@@ -22,6 +22,23 @@ export interface PackageItem {
   href?: string;
 }
 
+export interface RealPackageItem {
+  name: string;
+  size: string;
+  price: string | null;
+  poolSpecs: string[];
+  equipment: string[];
+  additionalCosts?: string[];
+  bonuses?: string[];
+}
+
+export interface ChemicalPackage {
+  name: string;
+  price: string;
+  items: string[];
+  freeItems: string[];
+}
+
 export interface PricingTier {
   name: string;
   description: string;

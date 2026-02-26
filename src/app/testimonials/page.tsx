@@ -15,7 +15,7 @@ import { Star } from "lucide-react";
 export const metadata: Metadata = createMetadata({
   title: "Customer Testimonials",
   description:
-    "Read reviews from Paragon Pool & Spa customers across the Twin Cities. 4.9 star average rating with 150+ reviews.",
+    "Read real reviews from Paragon Pool & Spa customers across the Twin Cities. Families share their pool installation experiences with owner Mike Henry.",
   path: "/testimonials",
 });
 
@@ -31,6 +31,7 @@ export default function TestimonialsPage() {
       <PageHero
         title={testimonialsContent.hero.title}
         subtitle={testimonialsContent.hero.subtitle}
+        backgroundImage="/images/backgrounds/testimonials-bg.jpg"
       />
       <Breadcrumbs items={[{ label: "Testimonials" }]} />
 

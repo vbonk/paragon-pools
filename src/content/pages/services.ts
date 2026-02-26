@@ -4,7 +4,7 @@ export const servicesContent = {
   hero: {
     title: "Our Services",
     subtitle:
-      "From design to installation to ongoing maintenance, Paragon Pool & Spa provides comprehensive pool and spa services for the Twin Cities metro area.",
+      "From custom pool design to installation to ongoing maintenance — Paragon Pool & Spa has served the Twin Cities metro since 1990, with owner Mike Henry on-site for every project.",
   },
 
   services: [

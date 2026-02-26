@@ -1,10 +1,19 @@
 import { Hero } from "@/components/sections/hero";
 import { Section, SectionHeader } from "@/components/ui/section";
 import { ServicesGrid } from "@/components/sections/services-grid";
+import { GalleryGrid } from "@/components/sections/gallery-grid";
 import { TestimonialsGrid } from "@/components/sections/testimonials-carousel";
 import { CtaBanner } from "@/components/sections/cta-banner";
+import { TrustBar } from "@/components/sections/trust-bar";
 import { COMPANY } from "@/lib/constants";
 import { homeContent } from "@/content/pages/home";
+
+const projectGallery = [
+  { src: "/images/hero/pool-project-1.jpg", alt: "Custom inground pool project by Paragon Pool & Spa", featured: true },
+  { src: "/images/hero/pool-aerial-1.jpg", alt: "Aerial view of completed pool installation", featured: true },
+  { src: "/images/hero/pool-project-2.jpg", alt: "Backyard pool transformation" },
+  { src: "/images/hero/pool-aerial-2.jpg", alt: "Drone shot of pool and landscaping" },
+];
 
 export default function HomePage() {
   return (
@@ -14,7 +23,10 @@ export default function HomePage() {
         subtitle={homeContent.hero.subtitle}
         cta={homeContent.hero.cta}
         secondaryCta={homeContent.hero.secondaryCta}
+        backgroundImage="/images/hero/pool-project-1.jpg"
       />
+
+      <TrustBar variant="compact" />
 
       {/* Intro */}
       <Section background="white">
@@ -44,8 +56,17 @@ export default function HomePage() {
         </div>
       </Section>
 
-      {/* Featured Services */}
+      {/* Project Gallery */}
       <Section background="white">
+        <SectionHeader
+          title="Our Recent Projects"
+          subtitle="See some of our custom pool installations across the Twin Cities."
+        />
+        <GalleryGrid images={projectGallery} />
+      </Section>
+
+      {/* Featured Services */}
+      <Section background="muted">
         <SectionHeader
           title="What We Do"
           subtitle="Comprehensive pool, spa, and sauna services for every step of your journey."
@@ -54,7 +75,7 @@ export default function HomePage() {
       </Section>
 
       {/* Testimonials */}
-      <Section background="muted">
+      <Section background="white">
         <SectionHeader
           title="What Our Customers Say"
           subtitle="Trusted by families across the Twin Cities metro area."

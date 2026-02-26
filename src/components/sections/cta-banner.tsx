@@ -43,6 +43,9 @@ export function CtaBanner({
             </a>
           )}
         </div>
+        <p className="mt-4 text-sm text-white/70">
+          A+ BBB Rated &middot; 35+ Years Experience &middot; Free Estimates &middot; 2015 Builder of Excellence
+        </p>
       </Container>
     </section>
   );

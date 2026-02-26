@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import { createMetadata } from "@/lib/metadata";
 import { PageHero } from "@/components/sections/hero";
 import { Section, SectionHeader } from "@/components/ui/section";
@@ -23,6 +24,7 @@ export default function AboutPage() {
       <PageHero
         title={aboutContent.hero.title}
         subtitle={aboutContent.hero.subtitle}
+        backgroundImage="/images/hero/pool-project-2.jpg"
       />
       <Breadcrumbs items={[{ label: "About" }]} />
 
@@ -77,6 +79,20 @@ export default function AboutPage() {
                 <p className="mt-1 text-muted-foreground">{milestone.event}</p>
               </div>
             ))}
+          </div>
+
+          {/* Latham Dealer Award */}
+          <div className="mt-12 text-center">
+            <Image
+              src="/images/logos/latham-dealer.jpg"
+              alt="Paragon Pool & Spa team at Latham dealer conference"
+              width={600}
+              height={400}
+              className="mx-auto rounded-xl"
+            />
+            <p className="mt-3 text-sm text-muted-foreground">
+              2015 Latham Dealer Conference — Paragon Pools recognized as Builder of Excellence.
+            </p>
           </div>
         </div>
       </Section>

@@ -77,3 +77,33 @@ NEXT_PUBLIC_SITE_URL=https://www.paragonpoolandspa.com
 - JSON-LD on every page (LocalBusiness, BreadcrumbList, Review)
 - Native Next.js sitemap.ts and robots.ts
 - `public/llms.txt` for AI crawler readability
+
+---
+
+## SESSION CONTINUITY STATE (Auto-Updated)
+
+**Last Updated:** 2026-02-26T19:40:21Z
+**Phase:** Initial build complete — deployed to Vercel
+**Task List:**  (Not configured)
+
+### Modified Files
+
+
+### Current Blockers
+None
+
+### Next Actions
+- Add real photography/images (currently text-only)
+- Configure N8N_WEBHOOK_URL env var on Vercel for CRM routing
+- Set custom domain (paragonpoolandspa.com) on Vercel
+- Run Lighthouse audit on deployed site for baseline comparison report
+- Create docs/audit/original-site-audit.md comparing Wix vs new site
+
+### Recovery Checklist
+1. Run `TaskList()` to see current tasks
+2. Check for `compaction_checkpoint` in in_progress task metadata
+3. Read files listed in `must_read_first`
+4. Review blockers above
+5. Continue from next actions
+
+---

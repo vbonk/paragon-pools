@@ -11,7 +11,7 @@ export const homeContent = {
 
   intro: {
     title: "Twin Cities' Trusted Pool & Spa Experts",
-    text: "Since 1990, Paragon Pool & Spa has been transforming backyards across the Twin Cities metro area. From custom inground pools to relaxing hot tubs and saunas, we bring your outdoor living dreams to life with expert craftsmanship, honest communication, and competitive pricing. With three showroom locations and an A+ BBB rating, we make it easy to get started.",
+    text: "Since 1990, Paragon Pool & Spa — the trade name of Paragon Pool and Patio, Inc. — has been building custom inground pools, installing hot tubs, and designing saunas for families across the Twin Cities metro area. Founded by Mike Henry, who has over 50 years of experience in pool construction since the early 1970s, Paragon earned A+ BBB accreditation in 1998 and was recognized as Builder of Excellence at the 2015 Latham Dealer Conference. With three showroom locations in Willernie, Stillwater, and Forest Lake, we offer complete pool packages with Hayward equipment, lifetime transferrable warranties, and competitive pricing starting at $51,995 for an 18x36 package.",
   },
 
   featuredServices: [
@@ -47,22 +47,22 @@ export const homeContent = {
 
   featuredTestimonials: [
     {
-      author: "Sarah M.",
+      author: "The Cotton Family",
       rating: 5,
-      text: "Paragon built our dream pool and the entire experience was fantastic. Professional from start to finish. Our family enjoys it every summer!",
-      location: "White Bear Lake, MN",
+      text: "What a great choice we made by selecting Paragon Pools to install our 18x36 pool package. The installation was a pain-free, noninvasive home improvement project. Mike answered all questions and addressed all concerns, returning every phone call no matter how trivial.",
+      service: "18x36 Pool Installation",
     },
     {
-      author: "Tom & Linda K.",
+      author: "Mark & Debby Gustafson",
       rating: 5,
-      text: "We've been customers for over 15 years. Their maintenance service is reliable and their team truly cares about quality. Highly recommend!",
-      location: "Mahtomedi, MN",
+      text: "You spoiled us 8 years ago and continue to spoil us today. When we needed replacement PVC tubing last week, we received it within half an hour! The friendly and responsive customer service is outstanding. We are Paragoners for life!",
+      service: "Ongoing Service & Repair",
     },
     {
-      author: "Dave R.",
+      author: "Irene Boyd",
       rating: 5,
-      text: "The hot tub we purchased from Paragon has been perfect. Great selection, knowledgeable staff, and excellent follow-up service.",
-      location: "Stillwater, MN",
+      text: "Thank you, Mike Henry, for your work ethic, your honesty, your concern for others, and your respect for our budget, our needs, and our property. You have made it possible for this newly retired couple to realize the dream of a lifetime.",
+      service: "Pool Construction",
     },
   ] satisfies TestimonialItem[],
 

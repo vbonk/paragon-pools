@@ -16,12 +16,23 @@ export const metadata: Metadata = {
   description: COMPANY.description,
   keywords: [
     "pool installation Minnesota",
+    "inground pool contractor Twin Cities",
+    "pool builder Minneapolis St Paul",
     "spa installation Twin Cities",
     "inground pools MN",
     "hot tubs Minnesota",
-    "sauna installation",
+    "sauna installation Minnesota",
     "pool maintenance Twin Cities",
+    "pool renovation Minnesota",
+    "automatic pool cover installation",
+    "Hayward pool equipment dealer",
+    "vinyl liner pool Minnesota",
+    "pool packages Minnesota",
     "Paragon Pool and Spa",
+    "Paragon Pool and Patio",
+    "pool contractor Willernie MN",
+    "pool builder Stillwater MN",
+    "pool company Forest Lake MN",
   ],
   authors: [{ name: COMPANY.name }],
   openGraph: {
@@ -38,6 +49,12 @@ export const metadata: Metadata = {
   robots: {
     index: true,
     follow: true,
+  },
+  other: {
+    "geo.region": "US-MN",
+    "geo.placename": "Willernie, Minnesota",
+    "geo.position": "45.0575;-92.9581",
+    "ICBM": "45.0575, -92.9581",
   },
 };
 

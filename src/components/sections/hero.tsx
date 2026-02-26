@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 import { Container } from "@/components/ui/container";
 
 interface HeroProps {
@@ -7,6 +8,7 @@ interface HeroProps {
   cta?: { label: string; href: string };
   secondaryCta?: { label: string; href: string };
   backgroundClass?: string;
+  backgroundImage?: string;
 }
 
 export function Hero({
@@ -15,11 +17,28 @@ export function Hero({
   cta,
   secondaryCta,
   backgroundClass = "bg-gradient-to-br from-secondary via-secondary-light to-secondary",
+  backgroundImage,
 }: HeroProps) {
   return (
-    <section className={`relative ${backgroundClass} text-white`}>
-      {/* Decorative overlay */}
-      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,_var(--color-primary)_0%,_transparent_50%)] opacity-20" />
+    <section className={`relative ${backgroundImage ? "bg-secondary" : backgroundClass} text-white`}>
+      {backgroundImage && (
+        <>
+          <Image
+            src={backgroundImage}
+            alt=""
+            fill
+            className="object-cover"
+            priority
+            sizes="100vw"
+          />
+          <div className="absolute inset-0 bg-black/50" />
+        </>
+      )}
+
+      {/* Decorative overlay (gradient only) */}
+      {!backgroundImage && (
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,_var(--color-primary)_0%,_transparent_50%)] opacity-20" />
+      )}
 
       <Container className="relative py-20 md:py-28 lg:py-36">
         <div className="max-w-3xl">
@@ -60,13 +79,29 @@ export function Hero({
 export function PageHero({
   title,
   subtitle,
+  backgroundImage,
 }: {
   title: string;
   subtitle?: string;
+  backgroundImage?: string;
 }) {
   return (
-    <section className="bg-gradient-to-r from-secondary to-secondary-light text-white">
-      <Container className="py-16 md:py-20">
+    <section className={`relative ${backgroundImage ? "bg-secondary" : "bg-gradient-to-r from-secondary to-secondary-light"} text-white`}>
+      {backgroundImage && (
+        <>
+          <Image
+            src={backgroundImage}
+            alt=""
+            fill
+            className="object-cover"
+            priority
+            sizes="100vw"
+          />
+          <div className="absolute inset-0 bg-black/50" />
+        </>
+      )}
+
+      <Container className="relative py-16 md:py-20">
         <div className="max-w-3xl">
           <h1 className="text-3xl font-bold tracking-tight md:text-4xl lg:text-5xl">
             {title}

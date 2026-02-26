@@ -149,19 +149,56 @@ export function ContactForm() {
         </div>
       </div>
 
+      <div className="grid gap-5 sm:grid-cols-2">
+        <div className="space-y-1">
+          <label htmlFor="timeline" className="block text-sm font-medium text-foreground">
+            Timeline
+          </label>
+          <select
+            id="timeline"
+            name="timeline"
+            className="w-full rounded-lg border border-border bg-white px-4 py-3 text-foreground focus:border-primary-dark focus:outline-none focus:ring-2 focus:ring-primary/30 transition-colors"
+          >
+            <option value="">When are you looking to start?</option>
+            {contactContent.formFields.timelines.map((timeline) => (
+              <option key={timeline} value={timeline}>
+                {timeline}
+              </option>
+            ))}
+          </select>
+        </div>
+        <div className="space-y-1">
+          <label htmlFor="budget" className="block text-sm font-medium text-foreground">
+            Budget Range
+          </label>
+          <select
+            id="budget"
+            name="budget"
+            className="w-full rounded-lg border border-border bg-white px-4 py-3 text-foreground focus:border-primary-dark focus:outline-none focus:ring-2 focus:ring-primary/30 transition-colors"
+          >
+            <option value="">What&apos;s your budget?</option>
+            {contactContent.formFields.budgets.map((budget) => (
+              <option key={budget} value={budget}>
+                {budget}
+              </option>
+            ))}
+          </select>
+        </div>
+      </div>
+
       <div className="space-y-1">
-        <label htmlFor="timeline" className="block text-sm font-medium text-foreground">
-          Timeline
+        <label htmlFor="referralSource" className="block text-sm font-medium text-foreground">
+          How Did You Hear About Us?
         </label>
         <select
-          id="timeline"
-          name="timeline"
+          id="referralSource"
+          name="referralSource"
           className="w-full rounded-lg border border-border bg-white px-4 py-3 text-foreground focus:border-primary-dark focus:outline-none focus:ring-2 focus:ring-primary/30 transition-colors"
         >
-          <option value="">When are you looking to start?</option>
-          {contactContent.formFields.timelines.map((timeline) => (
-            <option key={timeline} value={timeline}>
-              {timeline}
+          <option value="">Select an option...</option>
+          {contactContent.formFields.referralSources.map((source) => (
+            <option key={source} value={source}>
+              {source}
             </option>
           ))}
         </select>

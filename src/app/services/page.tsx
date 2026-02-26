@@ -6,6 +6,8 @@ import { ServicesGrid } from "@/components/sections/services-grid";
 import { CtaBanner } from "@/components/sections/cta-banner";
 import { Breadcrumbs } from "@/components/layout/breadcrumbs";
 import { BreadcrumbSchema } from "@/components/seo/breadcrumb-schema";
+import { JsonLd } from "@/components/seo/json-ld";
+import { generateFAQPageSchema } from "@/lib/schema";
 import { COMPANY } from "@/lib/constants";
 import { servicesContent } from "@/content/pages/services";
 
@@ -19,10 +21,12 @@ export const metadata: Metadata = createMetadata({
 export default function ServicesPage() {
   return (
     <>
+      <JsonLd data={generateFAQPageSchema(servicesContent.faqs)} />
       <BreadcrumbSchema items={[{ name: "Services", path: "/services" }]} />
       <PageHero
         title={servicesContent.hero.title}
         subtitle={servicesContent.hero.subtitle}
+        backgroundImage="/images/hero/pool-aerial-2.jpg"
       />
       <Breadcrumbs items={[{ label: "Services" }]} />
 

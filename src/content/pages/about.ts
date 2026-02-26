@@ -4,7 +4,7 @@ export const aboutContent = {
   hero: {
     title: "About Paragon Pool & Spa",
     subtitle:
-      "A family-owned business dedicated to creating beautiful outdoor spaces for Twin Cities families since 1990.",
+      "Family-owned since 1990, BBB A+ accredited since 1998, and recognized as a 2015 Latham Builder of Excellence. Owner Mike Henry has over 50 years of pool industry experience.",
   },
 
   story: {
@@ -63,7 +63,7 @@ export const aboutContent = {
     { year: "1990", event: "Paragon Pool and Patio, Inc. founded on April 1st" },
     { year: "1998", event: "Accredited by the Better Business Bureau (A+ rating)" },
     { year: "2005", event: "Expanded operations with second showroom location" },
-    { year: "2015", event: "Added sauna and expanded product lines" },
+    { year: "2015", event: "Recognized at Latham Dealer Conference as Builder of Excellence" },
     { year: "2020", event: "Celebrated 30 years serving the Twin Cities" },
     { year: "2025", event: "Three locations serving the east metro and beyond" },
   ],
@@ -72,11 +72,11 @@ export const aboutContent = {
     "Hayward",
     "Pentair",
     "Latham",
-    "Polaris",
-    "Cover Star",
-    "S.R. Smith",
     "Interfab",
+    "Premier Vinyl Pool Liners",
     "Zodiac",
     "SwimWise",
+    "Polaris",
+    "Cover Star",
   ],
 };

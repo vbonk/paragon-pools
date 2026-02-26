@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { Phone, Mail, MapPin, Facebook } from "lucide-react";
+import { Phone, Mail, MapPin, Facebook, Printer, Shield, Award, Star } from "lucide-react";
 import { COMPANY, NAV_LINKS } from "@/lib/constants";
 import { Container } from "@/components/ui/container";
 
@@ -8,6 +8,26 @@ export function Footer() {
 
   return (
     <footer className="bg-secondary text-white">
+      {/* Trust Badges Row */}
+      <div className="border-b border-white/10">
+        <Container className="py-6">
+          <div className="flex flex-wrap items-center justify-center gap-8 text-sm text-primary-light">
+            <div className="flex items-center gap-2">
+              <Shield className="h-5 w-5 text-accent" />
+              <span>BBB A+ Since 1998</span>
+            </div>
+            <div className="flex items-center gap-2">
+              <Award className="h-5 w-5 text-accent" />
+              <span>2015 Builder of Excellence</span>
+            </div>
+            <div className="flex items-center gap-2">
+              <Star className="h-5 w-5 text-accent" />
+              <span>35+ Years in Business</span>
+            </div>
+          </div>
+        </Container>
+      </div>
+
       <Container className="py-12 md:py-16">
         <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-4">
           {/* Company info */}
@@ -60,6 +80,10 @@ export function Footer() {
                 <Phone className="h-4 w-4 shrink-0" />
                 {COMPANY.phone}
               </a>
+              <div className="flex items-center gap-2 text-primary-light">
+                <Printer className="h-4 w-4 shrink-0" />
+                Fax: {COMPANY.fax}
+              </div>
               <a
                 href={`mailto:${COMPANY.email}`}
                 className="flex items-center gap-2 hover:text-white transition-colors"
@@ -96,7 +120,7 @@ export function Footer() {
             </div>
             <div className="mt-4 pt-4 border-t border-white/20">
               <p className="text-xs text-primary-light">
-                BBB Accredited &middot; A+ Rating
+                BBB Accredited &middot; A+ Rating &middot; Since 1998
               </p>
             </div>
           </div>

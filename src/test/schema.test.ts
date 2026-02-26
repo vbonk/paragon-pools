@@ -5,6 +5,8 @@ import {
   generateBreadcrumbSchema,
   generateReviewSchema,
   generateWebsiteSchema,
+  generateFAQPageSchema,
+  generateProductSchema,
 } from "@/lib/schema";
 
 describe("generateLocalBusinessSchema", () => {
@@ -22,9 +24,44 @@ describe("generateLocalBusinessSchema", () => {
     expect(schema.address).toHaveLength(3);
   });
 
-  it("includes opening hours", () => {
+  it("includes opening hours with Sunday", () => {
     const schema = generateLocalBusinessSchema();
-    expect(schema.openingHoursSpecification).toHaveLength(2);
+    expect(schema.openingHoursSpecification).toHaveLength(3);
+    const sunday = schema.openingHoursSpecification[2];
+    expect(sunday.dayOfWeek).toBe("Sunday");
+    expect(sunday.opens).toBe("10:00");
+    expect(sunday.closes).toBe("15:00");
+  });
+
+  it("has correct weekday hours (9-7)", () => {
+    const schema = generateLocalBusinessSchema();
+    const weekdays = schema.openingHoursSpecification[0];
+    expect(weekdays.opens).toBe("09:00");
+    expect(weekdays.closes).toBe("19:00");
+  });
+
+  it("has correct Saturday hours (9-4)", () => {
+    const schema = generateLocalBusinessSchema();
+    const saturday = schema.openingHoursSpecification[1];
+    expect(saturday.opens).toBe("09:00");
+    expect(saturday.closes).toBe("16:00");
+  });
+
+  it("includes founder information", () => {
+    const schema = generateLocalBusinessSchema();
+    expect(schema.founder).toBeDefined();
+    expect(schema.founder.name).toBe("Mike Henry");
+  });
+
+  it("includes fax number", () => {
+    const schema = generateLocalBusinessSchema();
+    expect(schema.faxNumber).toBeDefined();
+  });
+
+  it("includes knowsAbout topics", () => {
+    const schema = generateLocalBusinessSchema();
+    expect(schema.knowsAbout).toBeDefined();
+    expect(schema.knowsAbout.length).toBeGreaterThan(0);
   });
 });
 
@@ -71,5 +108,44 @@ describe("generateWebsiteSchema", () => {
     const schema = generateWebsiteSchema();
     expect(schema["@type"]).toBe("WebSite");
     expect(schema.url).toContain("paragonpoolandspa.com");
+  });
+});
+
+describe("generateFAQPageSchema", () => {
+  it("creates FAQ schema with questions and answers", () => {
+    const schema = generateFAQPageSchema([
+      { question: "How long does it take?", answer: "6-10 weeks typically." },
+      { question: "What types of pools?", answer: "Gunite, vinyl, fiberglass." },
+    ]);
+    expect(schema["@type"]).toBe("FAQPage");
+    expect(schema.mainEntity).toHaveLength(2);
+    expect(schema.mainEntity[0]["@type"]).toBe("Question");
+    expect(schema.mainEntity[0].name).toBe("How long does it take?");
+    expect(schema.mainEntity[0].acceptedAnswer["@type"]).toBe("Answer");
+  });
+});
+
+describe("generateProductSchema", () => {
+  it("creates product schema with price", () => {
+    const schema = generateProductSchema({
+      name: "18x36 Pool Package",
+      description: "Complete pool package",
+      price: 51995,
+      url: "https://www.paragonpoolandspa.com/packages",
+    });
+    expect(schema["@type"]).toBe("Product");
+    expect(schema.name).toBe("18x36 Pool Package");
+    expect(schema.offers?.price).toBe(51995);
+    expect(schema.offers?.priceCurrency).toBe("USD");
+  });
+
+  it("creates product schema without price", () => {
+    const schema = generateProductSchema({
+      name: "14x28 Pool Package",
+      description: "Complete pool package",
+      url: "https://www.paragonpoolandspa.com/packages",
+    });
+    expect(schema["@type"]).toBe("Product");
+    expect(schema.offers).toBeUndefined();
   });
 });

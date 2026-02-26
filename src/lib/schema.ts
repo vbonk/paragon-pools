@@ -1,4 +1,5 @@
 import { COMPANY } from "./constants";
+import type { FAQItem } from "@/types/content";
 
 export function generateLocalBusinessSchema() {
   return {
@@ -8,6 +9,7 @@ export function generateLocalBusinessSchema() {
     description: COMPANY.description,
     url: COMPANY.url,
     telephone: COMPANY.phone,
+    faxNumber: COMPANY.fax,
     email: COMPANY.email,
     foundingDate: String(COMPANY.foundedYear),
     image: `${COMPANY.url}/og-image.jpg`,
@@ -31,10 +33,27 @@ export function generateLocalBusinessSchema() {
       longitude: loc.lng,
     })),
     openingHoursSpecification: [
-      { "@type": "OpeningHoursSpecification", dayOfWeek: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"], opens: "09:00", closes: "18:00" },
-      { "@type": "OpeningHoursSpecification", dayOfWeek: "Saturday", opens: "10:00", closes: "16:00" },
+      { "@type": "OpeningHoursSpecification", dayOfWeek: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"], opens: "09:00", closes: "19:00" },
+      { "@type": "OpeningHoursSpecification", dayOfWeek: "Saturday", opens: "09:00", closes: "16:00" },
+      { "@type": "OpeningHoursSpecification", dayOfWeek: "Sunday", opens: "10:00", closes: "15:00" },
     ],
     sameAs: Object.values(COMPANY.social),
+    knowsAbout: [
+      "Inground pool construction",
+      "Hot tub installation",
+      "Sauna installation",
+      "Pool renovation",
+      "Automatic pool covers",
+      "Pool maintenance",
+      "Vinyl pool liners",
+      "Hayward pool equipment",
+      "Pentair salt systems",
+    ],
+    founder: {
+      "@type": "Person",
+      name: COMPANY.owner,
+      jobTitle: "President & Founder",
+    },
   };
 }
 
@@ -116,5 +135,52 @@ export function generateWebsiteSchema() {
     "@type": "WebSite",
     name: COMPANY.name,
     url: COMPANY.url,
+  };
+}
+
+export function generateFAQPageSchema(faqs: FAQItem[]) {
+  return {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: faqs.map((faq) => ({
+      "@type": "Question",
+      name: faq.question,
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: faq.answer,
+      },
+    })),
+  };
+}
+
+export function generateProductSchema(product: {
+  name: string;
+  description: string;
+  price?: number;
+  url: string;
+}) {
+  return {
+    "@context": "https://schema.org",
+    "@type": "Product",
+    name: product.name,
+    description: product.description,
+    url: product.url,
+    brand: {
+      "@type": "Brand",
+      name: COMPANY.name,
+    },
+    ...(product.price && {
+      offers: {
+        "@type": "Offer",
+        price: product.price,
+        priceCurrency: "USD",
+        availability: "https://schema.org/InStock",
+        seller: {
+          "@type": "HomeAndConstructionBusiness",
+          name: COMPANY.name,
+          url: COMPANY.url,
+        },
+      },
+    }),
   };
 }

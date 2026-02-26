@@ -29,6 +29,7 @@ export default function PlansPricingPage() {
       <PageHero
         title={plansPricingContent.hero.title}
         subtitle={plansPricingContent.hero.subtitle}
+        backgroundImage="/images/backgrounds/packages-bg.jpg"
       />
       <Breadcrumbs items={[{ label: "Plans & Pricing" }]} />
 

@@ -47,14 +47,16 @@ export const COMPANY = {
   ],
 
   hours: {
-    monday: "9:00 AM - 6:00 PM",
-    tuesday: "9:00 AM - 6:00 PM",
-    wednesday: "9:00 AM - 6:00 PM",
-    thursday: "9:00 AM - 6:00 PM",
-    friday: "9:00 AM - 6:00 PM",
+    monday: "9:00 AM - 7:00 PM",
+    tuesday: "9:00 AM - 7:00 PM",
+    wednesday: "9:00 AM - 7:00 PM",
+    thursday: "9:00 AM - 7:00 PM",
+    friday: "9:00 AM - 7:00 PM",
     saturday: "9:00 AM - 4:00 PM",
     sunday: "10:00 AM - 3:00 PM",
   },
+
+  fax: "(651) 653-6808",
 
   social: {
     facebook: "https://www.facebook.com/paragonpoolandspa",

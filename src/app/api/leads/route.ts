@@ -8,6 +8,8 @@ const leadSchema = z.object({
   phone: z.string().optional(),
   interest: z.string().optional(),
   timeline: z.string().optional(),
+  budget: z.string().optional(),
+  referralSource: z.string().optional(),
   message: z.string().optional(),
   sourcePage: z.string().optional(),
 });
@@ -55,6 +57,12 @@ export async function POST(request: NextRequest) {
     }
     if (raw.timeline) {
       extras.push(`Timeline: ${raw.timeline}`);
+    }
+    if (raw.budget) {
+      extras.push(`Budget: ${raw.budget}`);
+    }
+    if (raw.referralSource) {
+      extras.push(`Referral Source: ${raw.referralSource}`);
     }
 
     if (extras.length > 0) {

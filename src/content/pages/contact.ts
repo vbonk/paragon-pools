@@ -22,6 +22,23 @@ export const contactContent = {
       "Within a year",
       "Just researching",
     ],
+    budgets: [
+      "Under $30,000",
+      "$30,000 - $50,000",
+      "$50,000 - $75,000",
+      "$75,000 - $100,000",
+      "Over $100,000",
+      "Not sure yet",
+    ],
+    referralSources: [
+      "Google Search",
+      "Facebook",
+      "Friend / Family Referral",
+      "BBB",
+      "Drove By Showroom",
+      "Returning Customer",
+      "Other",
+    ],
   },
 
   info: {
@@ -32,6 +49,6 @@ export const contactContent = {
   mapEmbed: {
     title: "Visit Our Showrooms",
     description:
-      "We have two convenient locations in the east Twin Cities metro. Stop by to browse our hot tub and spa selection, discuss your pool project, or pick up supplies.",
+      "We have three convenient locations in the east Twin Cities metro. Stop by to browse our hot tub and spa selection, discuss your pool project, or pick up supplies.",
   },
 };

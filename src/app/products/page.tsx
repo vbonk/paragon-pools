@@ -5,6 +5,7 @@ import { Section, SectionHeader } from "@/components/ui/section";
 import { Breadcrumbs } from "@/components/layout/breadcrumbs";
 import { BreadcrumbSchema } from "@/components/seo/breadcrumb-schema";
 import { Card, CardTitle, CardDescription } from "@/components/ui/card";
+import { GalleryGrid } from "@/components/sections/gallery-grid";
 import { CtaBanner } from "@/components/sections/cta-banner";
 import { COMPANY } from "@/lib/constants";
 import { productsContent } from "@/content/pages/products";
@@ -16,6 +17,18 @@ export const metadata: Metadata = createMetadata({
   path: "/products",
 });
 
+const productGallery = [
+  { src: "/images/gallery/product-1.jpg", alt: "Pool and spa product" },
+  { src: "/images/gallery/product-2.jpg", alt: "Pool and spa product" },
+  { src: "/images/gallery/product-3.jpg", alt: "Pool and spa product" },
+  { src: "/images/gallery/product-4.jpg", alt: "Pool and spa product" },
+  { src: "/images/gallery/product-5.jpg", alt: "Pool and spa product" },
+  { src: "/images/gallery/product-6.jpg", alt: "Pool and spa product" },
+  { src: "/images/gallery/product-7.jpg", alt: "Pool and spa product" },
+  { src: "/images/gallery/product-8.jpg", alt: "Pool and spa product" },
+  { src: "/images/gallery/product-9.jpg", alt: "Pool and spa product" },
+];
+
 export default function ProductsPage() {
   return (
     <>
@@ -23,6 +36,7 @@ export default function ProductsPage() {
       <PageHero
         title={productsContent.hero.title}
         subtitle={productsContent.hero.subtitle}
+        backgroundImage="/images/hero/beach-ball-pool.jpg"
       />
       <Breadcrumbs items={[{ label: "Products" }]} />
 
@@ -47,6 +61,15 @@ export default function ProductsPage() {
           </div>
         </Section>
       ))}
+
+      {/* Product Gallery */}
+      <Section background="muted">
+        <SectionHeader
+          title="Product Gallery"
+          subtitle="Browse our selection of pool and spa products."
+        />
+        <GalleryGrid images={productGallery} />
+      </Section>
 
       <CtaBanner
         title="Visit Our Showroom"

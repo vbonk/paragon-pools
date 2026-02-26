@@ -53,9 +53,9 @@ describe("generateLocalBusinessSchema", () => {
     expect(schema.founder.name).toBe("Mike Henry");
   });
 
-  it("includes fax number", () => {
+  it("does not include fax number", () => {
     const schema = generateLocalBusinessSchema();
-    expect(schema.faxNumber).toBeDefined();
+    expect(schema).not.toHaveProperty("faxNumber");
   });
 
   it("includes knowsAbout topics", () => {
@@ -92,14 +92,15 @@ describe("generateBreadcrumbSchema", () => {
 });
 
 describe("generateReviewSchema", () => {
-  it("calculates aggregate rating", () => {
+  it("generates review schema without aggregate rating", () => {
     const schema = generateReviewSchema([
-      { author: "Test", rating: 5, text: "Great" },
-      { author: "Test2", rating: 4, text: "Good" },
+      { author: "Test", text: "Great" },
+      { author: "Test2", text: "Good" },
     ]);
-    expect(schema.aggregateRating.ratingValue).toBe("4.5");
-    expect(schema.aggregateRating.reviewCount).toBe(2);
+    expect(schema).not.toHaveProperty("aggregateRating");
     expect(schema.review).toHaveLength(2);
+    expect(schema.review[0].reviewBody).toBe("Great");
+    expect(schema.review[0].author.name).toBe("Test");
   });
 });
 

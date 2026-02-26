@@ -49,6 +49,6 @@ export const contactContent = {
   mapEmbed: {
     title: "Visit Our Showrooms",
     description:
-      "We have three convenient locations in the east Twin Cities metro. Stop by to browse our hot tub and spa selection, discuss your pool project, or pick up supplies.",
+      "Stop by our showroom in the east Twin Cities metro to browse our hot tub and spa selection, discuss your pool project, or pick up supplies.",
   },
 };

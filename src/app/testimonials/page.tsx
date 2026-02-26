@@ -10,8 +10,6 @@ import { JsonLd } from "@/components/seo/json-ld";
 import { generateReviewSchema } from "@/lib/schema";
 import { COMPANY } from "@/lib/constants";
 import { testimonialsContent } from "@/content/pages/testimonials";
-import { Star } from "lucide-react";
-
 export const metadata: Metadata = createMetadata({
   title: "Customer Testimonials",
   description:
@@ -20,7 +18,7 @@ export const metadata: Metadata = createMetadata({
 });
 
 export default function TestimonialsPage() {
-  const { reviews, summary } = testimonialsContent;
+  const { reviews } = testimonialsContent;
 
   return (
     <>
@@ -34,33 +32,6 @@ export default function TestimonialsPage() {
         backgroundImage="/images/backgrounds/testimonials-bg.jpg"
       />
       <Breadcrumbs items={[{ label: "Testimonials" }]} />
-
-      {/* Summary Stats */}
-      <Section background="primary">
-        <div className="grid grid-cols-1 gap-8 sm:grid-cols-3 text-center">
-          <div>
-            <div className="flex items-center justify-center gap-1 text-4xl font-bold text-secondary">
-              {summary.averageRating}
-              <Star className="h-8 w-8 fill-accent text-accent" />
-            </div>
-            <p className="mt-1 text-sm text-muted-foreground">Average Rating</p>
-          </div>
-          <div>
-            <p className="text-4xl font-bold text-secondary">
-              {summary.totalReviews}+
-            </p>
-            <p className="mt-1 text-sm text-muted-foreground">Happy Customers</p>
-          </div>
-          <div>
-            <p className="text-4xl font-bold text-secondary">
-              {summary.recommendation}%
-            </p>
-            <p className="mt-1 text-sm text-muted-foreground">
-              Would Recommend Us
-            </p>
-          </div>
-        </div>
-      </Section>
 
       {/* Reviews Grid */}
       <Section background="white">

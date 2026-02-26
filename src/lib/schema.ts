@@ -9,7 +9,6 @@ export function generateLocalBusinessSchema() {
     description: COMPANY.description,
     url: COMPANY.url,
     telephone: COMPANY.phone,
-    faxNumber: COMPANY.fax,
     email: COMPANY.email,
     foundingDate: String(COMPANY.foundedYear),
     image: `${COMPANY.url}/og-image.jpg`,
@@ -97,32 +96,17 @@ export function generateBreadcrumbSchema(
 
 export function generateReviewSchema(reviews: {
   author: string;
-  rating: number;
+  rating?: number;
   text: string;
   date?: string;
 }[]) {
-  const avgRating =
-    reviews.reduce((sum, r) => sum + r.rating, 0) / reviews.length;
-
   return {
     "@context": "https://schema.org",
     "@type": "HomeAndConstructionBusiness",
     name: COMPANY.name,
-    aggregateRating: {
-      "@type": "AggregateRating",
-      ratingValue: avgRating.toFixed(1),
-      reviewCount: reviews.length,
-      bestRating: "5",
-      worstRating: "1",
-    },
     review: reviews.map((r) => ({
       "@type": "Review",
       author: { "@type": "Person", name: r.author },
-      reviewRating: {
-        "@type": "Rating",
-        ratingValue: r.rating,
-        bestRating: "5",
-      },
       reviewBody: r.text,
       ...(r.date && { datePublished: r.date }),
     })),

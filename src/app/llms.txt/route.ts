@@ -31,14 +31,11 @@ ${COMPANY.name} is the trade name of ${COMPANY.legalName}, founded in ${COMPANY.
 
 ## Business Information
 
-- Legal Name: ${COMPANY.legalName}
 - Owner: ${COMPANY.owner}, President & Founder
-- Founded: April 1, ${COMPANY.foundedYear}
-- BBB Rating: ${COMPANY.bbbRating} (Accredited since 1998)
-- Industry Experience: Owner has 50+ years in pool construction (since early 1970s)
+- Founded: ${COMPANY.foundedYear}
+- Industry Experience: Owner has been in pool construction since the early 1970s
 - Recognition: 2015 Latham Dealer Conference — Builder of Excellence
 - Phone: ${COMPANY.phone}
-- Fax: ${COMPANY.fax}
 - Email: ${COMPANY.email}
 - Website: ${COMPANY.url}
 
@@ -83,13 +80,10 @@ ${COMPANY.serviceArea.join(", ")}, and the greater Twin Cities metropolitan area
 ## Key Facts
 
 - ${COMPANY.yearsInBusiness}+ years in business (founded ${COMPANY.foundedYear})
-- ${COMPANY.owner} has 50+ years of pool industry experience
+- ${COMPANY.owner} has been in the pool industry since the early 1970s
 - Owner is on-site for every project
-- Three showroom locations in the east Twin Cities metro
 - Family-owned and operated
-- ${COMPANY.bbbRating} BBB rating since 1998
 - 2015 Latham Builder of Excellence award
-- Free in-home estimates available
 - Complete pool packages from 14x28 to 20x40
 - Prices starting at $51,995 for 18x36 complete package
 `;

@@ -4,76 +4,69 @@ export const plansPricingContent = {
   hero: {
     title: "Plans & Pricing",
     subtitle:
-      "Transparent pricing for our maintenance plans and services. Custom pool construction is quoted on a per-project basis.",
+      "We offer maintenance plans and services tailored to your needs. Contact us for a personalized quote.",
   },
 
   maintenancePlans: [
     {
       name: "Basic Care",
       description: "Essential maintenance to keep your pool clean and safe.",
-      priceLabel: "Starting at $150/month",
+      priceLabel: "Contact for Pricing",
       features: [
-        "Weekly water testing & chemical balancing",
+        "Water testing & chemical balancing",
         "Skimming & debris removal",
-        "Filter cleaning (monthly)",
+        "Filter cleaning",
         "Equipment inspection",
         "Seasonal opening & closing",
       ],
-      cta: "Get Started",
+      cta: "Get a Quote",
     },
     {
       name: "Full Service",
       description:
         "Comprehensive care so you never have to worry about your pool.",
-      priceLabel: "Starting at $250/month",
+      priceLabel: "Contact for Pricing",
       features: [
         "Everything in Basic Care, plus:",
-        "Vacuuming & brushing (weekly)",
+        "Vacuuming & brushing",
         "Tile & waterline cleaning",
         "Filter backwash & cleaning",
         "Minor equipment repairs included",
         "Priority scheduling",
-        "Winter watch program",
       ],
       highlighted: true,
-      cta: "Most Popular",
+      cta: "Get a Quote",
     },
     {
       name: "Premium Plus",
       description:
         "Complete pool and spa care for homeowners who want the best.",
-      priceLabel: "Starting at $350/month",
+      priceLabel: "Contact for Pricing",
       features: [
         "Everything in Full Service, plus:",
         "Hot tub / spa maintenance included",
         "Equipment replacement discounts",
-        "24/7 emergency service line",
+        "Emergency service",
         "Annual equipment overhaul",
         "Water feature maintenance",
-        "Dedicated service technician",
       ],
-      cta: "Contact Us",
+      cta: "Get a Quote",
     },
   ] satisfies PricingTier[],
 
   additionalServices: [
-    { service: "Pool Opening (Seasonal)", price: "From $300" },
-    { service: "Pool Closing (Winterization)", price: "From $275" },
-    { service: "One-Time Cleaning & Chemical Balance", price: "From $175" },
-    { service: "Equipment Diagnostic Service Call", price: "From $125" },
-    { service: "Leak Detection", price: "From $200" },
-    { service: "Heater Service / Repair", price: "From $150" },
-    { service: "Safety Cover Install / Removal", price: "From $200" },
+    { service: "Pool Opening (Seasonal)", price: "Contact for Quote" },
+    { service: "Pool Closing (Winterization)", price: "Contact for Quote" },
+    { service: "One-Time Cleaning & Chemical Balance", price: "Contact for Quote" },
+    { service: "Equipment Diagnostic Service Call", price: "Contact for Quote" },
+    { service: "Leak Detection", price: "Contact for Quote" },
+    { service: "Heater Service / Repair", price: "Contact for Quote" },
+    { service: "Safety Cover Install / Removal", price: "Contact for Quote" },
   ],
 
   constructionNote: {
     title: "Custom Pool Construction Pricing",
-    text: "Every pool project is unique. Construction pricing depends on pool size, type (gunite, vinyl, or fiberglass), site conditions, features, and finishing options. We provide detailed, transparent quotes after an on-site consultation. Most inground pool projects range from $45,000 to $120,000+.",
-    cta: { label: "Schedule a Free Consultation", href: "/contact" },
-  },
-
-  financing: {
-    title: "Financing Available",
-    text: "Don't let budget concerns keep you from your dream pool. We partner with top financing providers to offer competitive rates, low monthly payments, and flexible terms. Ask about our financing options during your consultation.",
+    text: "Every pool project is unique. Construction pricing depends on pool size, site conditions, features, and finishing options. We provide detailed, transparent quotes after an on-site consultation. Check out our packages page for complete pool package options with pricing.",
+    cta: { label: "Schedule a Consultation", href: "/contact" },
   },
 };

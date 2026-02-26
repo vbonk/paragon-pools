@@ -11,7 +11,7 @@ export const servicesContent = {
     {
       title: "Custom Pool Design & Construction",
       description:
-        "We work with you from concept to completion to design and build the perfect inground pool. Our team handles design consultation, permits, excavation, construction, and finishing. Choose from gunite (concrete), vinyl liner, or fiberglass options tailored to your space and style.",
+        "We work with you from concept to completion to design and build the perfect inground pool. Our team handles design consultation, permits, excavation, construction, and finishing — tailored to your space and style.",
       icon: "pen-tool",
     },
     {
@@ -63,7 +63,7 @@ export const servicesContent = {
       step: 1,
       title: "Consultation",
       description:
-        "We meet at your home for a free estimate. We discuss your vision, assess your yard, and understand your budget and timeline.",
+        "We meet at your home to discuss your vision, assess your yard, and understand your budget and timeline.",
     },
     {
       step: 2,
@@ -94,12 +94,7 @@ export const servicesContent = {
     {
       question: "What types of pools do you install?",
       answer:
-        "We install gunite (concrete), vinyl liner, and fiberglass pools. Each type has its advantages, and we help you choose the best option for your needs, budget, and property during the free consultation.",
-    },
-    {
-      question: "Do you offer financing?",
-      answer:
-        "Yes, we partner with financing providers to offer competitive rates and flexible terms. Ask about financing options during your in-home consultation.",
+        "We specialize in steel wall vinyl liner inground pools — our packages include everything from excavation to equipment. Contact us to discuss the best option for your property and budget.",
     },
     {
       question: "Can you work on an existing pool?",
@@ -112,9 +107,9 @@ export const servicesContent = {
         "We provide weekly maintenance plans including water testing, chemical balancing, and salt system adjustment. We also offer seasonal opening and closing, equipment repair, and one-time service calls.",
     },
     {
-      question: "Do you sell above-ground pools?",
+      question: "Do you sell pool chemicals and supplies?",
       answer:
-        "Yes, in addition to custom inground pools, we also sell and install above-ground pools. Visit our showroom or contact us to learn about available options.",
+        "Yes, we carry a full range of pool and spa chemicals, test kits, and maintenance supplies. Visit our showroom in Willernie or contact us for availability.",
     },
   ] satisfies FAQItem[],
 };

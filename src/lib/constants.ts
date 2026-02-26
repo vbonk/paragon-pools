@@ -56,12 +56,11 @@ export const COMPANY = {
     sunday: "10:00 AM - 3:00 PM",
   },
 
-  fax: "(651) 653-6808",
-
   social: {
     facebook: "https://www.facebook.com/paragonpoolandspa",
   },
 
+  // TODO(client-review): Verify service area cities with client — these are estimated from location data
   serviceArea: [
     "Mahtomedi",
     "Willernie",

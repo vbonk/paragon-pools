@@ -16,7 +16,7 @@ import { plansPricingContent } from "@/content/pages/plans-pricing";
 export const metadata: Metadata = createMetadata({
   title: "Plans & Pricing",
   description:
-    "Pool and spa maintenance plans starting at $150/month. Seasonal services, equipment repair, and custom pool construction quotes available.",
+    "Pool and spa maintenance plans and services. Seasonal services, equipment repair, and custom pool construction quotes available from Paragon Pool & Spa.",
   path: "/plans-pricing",
 });
 
@@ -70,18 +70,6 @@ export default function PlansPricingPage() {
           >
             {plansPricingContent.constructionNote.cta.label}
           </Link>
-        </div>
-      </Section>
-
-      {/* Financing */}
-      <Section background="primary">
-        <div className="mx-auto max-w-3xl text-center">
-          <h2 className="text-3xl font-bold tracking-tight text-secondary md:text-4xl">
-            {plansPricingContent.financing.title}
-          </h2>
-          <p className="mt-4 text-lg text-muted-foreground leading-relaxed">
-            {plansPricingContent.financing.text}
-          </p>
         </div>
       </Section>
 

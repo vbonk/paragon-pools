@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { Phone, Mail, MapPin, Facebook, Printer, Shield, Award, Star } from "lucide-react";
+import { Phone, Mail, MapPin, Facebook, Shield, Award, Star } from "lucide-react";
 import { COMPANY, NAV_LINKS } from "@/lib/constants";
 import { Container } from "@/components/ui/container";
 
@@ -80,10 +80,6 @@ export function Footer() {
                 <Phone className="h-4 w-4 shrink-0" />
                 {COMPANY.phone}
               </a>
-              <div className="flex items-center gap-2 text-primary-light">
-                <Printer className="h-4 w-4 shrink-0" />
-                Fax: {COMPANY.fax}
-              </div>
               <a
                 href={`mailto:${COMPANY.email}`}
                 className="flex items-center gap-2 hover:text-white transition-colors"

@@ -11,7 +11,7 @@ export const homeContent = {
 
   intro: {
     title: "Twin Cities' Trusted Pool & Spa Experts",
-    text: "Since 1990, Paragon Pool & Spa — the trade name of Paragon Pool and Patio, Inc. — has been building custom inground pools, installing hot tubs, and designing saunas for families across the Twin Cities metro area. Founded by Mike Henry, who has over 50 years of experience in pool construction since the early 1970s, Paragon earned A+ BBB accreditation in 1998 and was recognized as Builder of Excellence at the 2015 Latham Dealer Conference. With three showroom locations in Willernie, Stillwater, and Forest Lake, we offer complete pool packages with Hayward equipment, lifetime transferrable warranties, and competitive pricing starting at $51,995 for an 18x36 package.",
+    text: "Since 1990, Paragon Pool & Spa has been building custom inground pools, installing hot tubs, and designing saunas for families across the Twin Cities metro area. Founded by Mike Henry, who started in the pool industry in the early 1970s, Paragon was recognized as Builder of Excellence at the 2015 Latham Dealer Conference. We offer complete pool packages with Hayward equipment, lifetime transferrable warranties, and competitive pricing starting at $51,995 for an 18x36 package.",
   },
 
   featuredServices: [
@@ -48,19 +48,16 @@ export const homeContent = {
   featuredTestimonials: [
     {
       author: "The Cotton Family",
-      rating: 5,
       text: "What a great choice we made by selecting Paragon Pools to install our 18x36 pool package. The installation was a pain-free, noninvasive home improvement project. Mike answered all questions and addressed all concerns, returning every phone call no matter how trivial.",
       service: "18x36 Pool Installation",
     },
     {
       author: "Mark & Debby Gustafson",
-      rating: 5,
       text: "You spoiled us 8 years ago and continue to spoil us today. When we needed replacement PVC tubing last week, we received it within half an hour! The friendly and responsive customer service is outstanding. We are Paragoners for life!",
       service: "Ongoing Service & Repair",
     },
     {
       author: "Irene Boyd",
-      rating: 5,
       text: "Thank you, Mike Henry, for your work ethic, your honesty, your concern for others, and your respect for our budget, our needs, and our property. You have made it possible for this newly retired couple to realize the dream of a lifetime.",
       service: "Pool Construction",
     },
@@ -68,9 +65,8 @@ export const homeContent = {
 
   stats: [
     { value: "35+", label: "Years in Business" },
-    { value: "3", label: "Showroom Locations" },
     { value: "A+", label: "BBB Rating" },
-    { value: "50+", label: "Years of Expertise" },
+    { value: "2015", label: "Builder of Excellence" },
   ],
 
   ctaBanner: {

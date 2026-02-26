@@ -4,7 +4,7 @@ export const productsContent = {
   hero: {
     title: "Products",
     subtitle:
-      "Browse our selection of premium hot tubs, saunas, pool equipment, and more. Visit any of our three showroom locations to see them in person.",
+      "Browse our selection of premium hot tubs, saunas, pool equipment, and more. Visit our showroom to see them in person.",
   },
 
   categories: [
@@ -67,7 +67,7 @@ export const productsContent = {
     {
       name: "Pool Equipment & Supplies",
       description:
-        "Professional-grade equipment and supplies from industry-leading brands: Hayward, Pentair, Latham, Polaris, Cover Star, S.R. Smith, Interfab, and Zodiac.",
+        "Professional-grade equipment and supplies from industry-leading brands: Hayward, Pentair, Latham, Polaris, Cover Star, Interfab, and Zodiac.",
       products: [
         {
           name: "Pumps & Filters",
@@ -96,7 +96,7 @@ export const productsContent = {
         {
           name: "Cleaners & Accessories",
           description:
-            "Polaris and Zodiac robotic cleaners, suction-side cleaners, diving boards by Interfab, and S.R. Smith ladders and rails.",
+            "Polaris and Zodiac robotic cleaners, suction-side cleaners, and diving boards by Interfab.",
           category: "Pool Equipment & Supplies",
         },
       ] satisfies ProductItem[],

@@ -7,7 +7,7 @@ export interface ServiceItem {
 
 export interface TestimonialItem {
   author: string;
-  rating: number;
+  rating?: number;
   text: string;
   date?: string;
   location?: string;

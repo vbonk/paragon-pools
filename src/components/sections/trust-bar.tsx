@@ -1,11 +1,11 @@
-import { Shield, Award, Clock, Star } from "lucide-react";
+import { Shield, Award, Clock, Users } from "lucide-react";
 import { Container } from "@/components/ui/container";
 
 const trustItems = [
   { icon: Shield, label: "BBB A+ Rated", sublabel: "Since 1998" },
   { icon: Clock, label: "35+ Years", sublabel: "In Business" },
   { icon: Award, label: "Builder of Excellence", sublabel: "Latham 2015" },
-  { icon: Star, label: "5-Star Reviews", sublabel: "Real Families" },
+  { icon: Users, label: "Family Owned", sublabel: "Since 1990" },
 ];
 
 export function TrustBar({ variant = "compact" }: { variant?: "compact" | "full" }) {

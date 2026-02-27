@@ -80,14 +80,11 @@ export const COMPANY = {
 } as const;
 
 export const NAV_LINKS = [
-  { href: "/", label: "Home" },
   { href: "/services", label: "Services" },
   { href: "/packages", label: "Packages" },
-  { href: "/products", label: "Products" },
-  { href: "/plans-pricing", label: "Plans & Pricing" },
   { href: "/gallery", label: "Gallery" },
-  { href: "/about", label: "About" },
   { href: "/testimonials", label: "Testimonials" },
+  { href: "/about", label: "About" },
   { href: "/blog", label: "Blog" },
   { href: "/contact", label: "Contact" },
 ] as const;

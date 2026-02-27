@@ -25,6 +25,7 @@ export default function ContactPage() {
       <PageHero
         title={contactContent.hero.title}
         subtitle={contactContent.hero.subtitle}
+        backgroundImage="/images/hero/poolside-chairs.jpg"
       />
       <Breadcrumbs items={[{ label: "Contact" }]} />
 

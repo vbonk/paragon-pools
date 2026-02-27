@@ -1,6 +1,19 @@
 import Link from "next/link";
 import { Phone, Mail, MapPin, Facebook, Shield, Award, Star } from "lucide-react";
-import { COMPANY, NAV_LINKS } from "@/lib/constants";
+import { COMPANY } from "@/lib/constants";
+
+const FOOTER_LINKS = [
+  { href: "/", label: "Home" },
+  { href: "/services", label: "Services" },
+  { href: "/packages", label: "Packages" },
+  { href: "/products", label: "Products" },
+  { href: "/plans-pricing", label: "Plans & Pricing" },
+  { href: "/gallery", label: "Gallery" },
+  { href: "/about", label: "About" },
+  { href: "/testimonials", label: "Testimonials" },
+  { href: "/blog", label: "Blog" },
+  { href: "/contact", label: "Contact" },
+];
 import { Container } from "@/components/ui/container";
 
 export function Footer() {
@@ -55,7 +68,7 @@ export function Footer() {
               Quick Links
             </h4>
             <nav className="flex flex-col gap-2" aria-label="Footer navigation">
-              {NAV_LINKS.map((link) => (
+              {FOOTER_LINKS.map((link) => (
                 <Link
                   key={link.href}
                   href={link.href}

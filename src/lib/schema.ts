@@ -100,6 +100,9 @@ export function generateReviewSchema(reviews: {
   text: string;
   date?: string;
 }[]) {
+  const ratedReviews = reviews.filter((r) => r.rating != null);
+  const hasRatings = ratedReviews.length > 0;
+
   return {
     "@context": "https://schema.org",
     "@type": "HomeAndConstructionBusiness",
@@ -109,7 +112,24 @@ export function generateReviewSchema(reviews: {
       author: { "@type": "Person", name: r.author },
       reviewBody: r.text,
       ...(r.date && { datePublished: r.date }),
+      ...(r.rating != null && {
+        reviewRating: {
+          "@type": "Rating",
+          ratingValue: r.rating,
+          bestRating: 5,
+        },
+      }),
     })),
+    ...(hasRatings && {
+      aggregateRating: {
+        "@type": "AggregateRating",
+        ratingValue:
+          ratedReviews.reduce((sum, r) => sum + r.rating!, 0) /
+          ratedReviews.length,
+        reviewCount: ratedReviews.length,
+        bestRating: 5,
+      },
+    }),
   };
 }
 
@@ -164,6 +184,80 @@ export function generateProductSchema(product: {
           name: COMPANY.name,
           url: COMPANY.url,
         },
+      },
+    }),
+  };
+}
+
+export function generateHowToSchema(howTo: {
+  name: string;
+  description: string;
+  steps: { name: string; text: string }[];
+}) {
+  return {
+    "@context": "https://schema.org",
+    "@type": "HowTo",
+    name: howTo.name,
+    description: howTo.description,
+    step: howTo.steps.map((step, index) => ({
+      "@type": "HowToStep",
+      position: index + 1,
+      name: step.name,
+      text: step.text,
+    })),
+  };
+}
+
+export function generateContactPointSchema() {
+  return {
+    "@context": "https://schema.org",
+    "@type": "HomeAndConstructionBusiness",
+    name: COMPANY.name,
+    url: COMPANY.url,
+    contactPoint: {
+      "@type": "ContactPoint",
+      telephone: COMPANY.phone,
+      email: COMPANY.email,
+      contactType: "sales",
+      areaServed: {
+        "@type": "State",
+        name: "Minnesota",
+      },
+      availableLanguage: "English",
+    },
+  };
+}
+
+export function generateArticleSchema(article: {
+  title: string;
+  description: string;
+  author: string;
+  datePublished: string;
+  dateModified?: string;
+  url: string;
+  image?: string;
+}) {
+  return {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    headline: article.title,
+    description: article.description,
+    author: {
+      "@type": "Person",
+      name: article.author,
+    },
+    publisher: {
+      "@type": "Organization",
+      name: COMPANY.name,
+      url: COMPANY.url,
+    },
+    datePublished: article.datePublished,
+    ...(article.dateModified && { dateModified: article.dateModified }),
+    mainEntityOfPage: article.url,
+    ...(article.image && {
+      image: {
+        "@type": "ImageObject",
+        url: article.image,
       },
     }),
   };

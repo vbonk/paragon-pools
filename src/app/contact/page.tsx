@@ -4,6 +4,8 @@ import { PageHero } from "@/components/sections/hero";
 import { Section, SectionHeader } from "@/components/ui/section";
 import { Breadcrumbs } from "@/components/layout/breadcrumbs";
 import { BreadcrumbSchema } from "@/components/seo/breadcrumb-schema";
+import { JsonLd } from "@/components/seo/json-ld";
+import { generateContactPointSchema } from "@/lib/schema";
 import { ContactForm } from "@/components/sections/contact-form";
 import { MapEmbed } from "@/components/sections/map-embed";
 import { contactContent } from "@/content/pages/contact";
@@ -19,6 +21,7 @@ export default function ContactPage() {
   return (
     <>
       <BreadcrumbSchema items={[{ name: "Contact", path: "/contact" }]} />
+      <JsonLd data={generateContactPointSchema()} />
       <PageHero
         title={contactContent.hero.title}
         subtitle={contactContent.hero.subtitle}

@@ -7,7 +7,7 @@ import { CtaBanner } from "@/components/sections/cta-banner";
 import { Breadcrumbs } from "@/components/layout/breadcrumbs";
 import { BreadcrumbSchema } from "@/components/seo/breadcrumb-schema";
 import { JsonLd } from "@/components/seo/json-ld";
-import { generateFAQPageSchema } from "@/lib/schema";
+import { generateFAQPageSchema, generateServiceSchema, generateHowToSchema } from "@/lib/schema";
 import { COMPANY } from "@/lib/constants";
 import { servicesContent } from "@/content/pages/services";
 
@@ -22,6 +22,21 @@ export default function ServicesPage() {
   return (
     <>
       <JsonLd data={generateFAQPageSchema(servicesContent.faqs)} />
+      {servicesContent.services.map((s) => (
+        <JsonLd key={s.title} data={generateServiceSchema({
+          name: s.title,
+          description: s.description,
+          url: `${COMPANY.url}/services`,
+        })} />
+      ))}
+      <JsonLd data={generateHowToSchema({
+        name: "How Paragon Pool & Spa Builds Your Pool",
+        description: "Our 4-step process from consultation to enjoying your new pool.",
+        steps: servicesContent.process.map((step) => ({
+          name: step.title,
+          text: step.description,
+        })),
+      })} />
       <BreadcrumbSchema items={[{ name: "Services", path: "/services" }]} />
       <PageHero
         title={servicesContent.hero.title}

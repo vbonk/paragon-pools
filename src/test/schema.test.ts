@@ -7,6 +7,9 @@ import {
   generateWebsiteSchema,
   generateFAQPageSchema,
   generateProductSchema,
+  generateHowToSchema,
+  generateContactPointSchema,
+  generateArticleSchema,
 } from "@/lib/schema";
 
 describe("generateLocalBusinessSchema", () => {
@@ -92,7 +95,7 @@ describe("generateBreadcrumbSchema", () => {
 });
 
 describe("generateReviewSchema", () => {
-  it("generates review schema without aggregate rating", () => {
+  it("generates review schema without aggregate rating when no ratings", () => {
     const schema = generateReviewSchema([
       { author: "Test", text: "Great" },
       { author: "Test2", text: "Good" },
@@ -101,6 +104,38 @@ describe("generateReviewSchema", () => {
     expect(schema.review).toHaveLength(2);
     expect(schema.review[0].reviewBody).toBe("Great");
     expect(schema.review[0].author.name).toBe("Test");
+    expect(schema.review[0]).not.toHaveProperty("reviewRating");
+  });
+
+  it("includes reviewRating and aggregateRating when ratings provided", () => {
+    const schema = generateReviewSchema([
+      { author: "Alice", rating: 5, text: "Amazing!" },
+      { author: "Bob", rating: 4, text: "Good work" },
+      { author: "Carol", text: "Nice" },
+    ]);
+    expect(schema.review[0].reviewRating).toEqual({
+      "@type": "Rating",
+      ratingValue: 5,
+      bestRating: 5,
+    });
+    expect(schema.review[1].reviewRating.ratingValue).toBe(4);
+    expect(schema.review[2]).not.toHaveProperty("reviewRating");
+    expect(schema.aggregateRating).toEqual({
+      "@type": "AggregateRating",
+      ratingValue: 4.5,
+      reviewCount: 2,
+      bestRating: 5,
+    });
+  });
+
+  it("computes correct aggregate for all 5-star reviews", () => {
+    const schema = generateReviewSchema([
+      { author: "A", rating: 5, text: "Great" },
+      { author: "B", rating: 5, text: "Great" },
+      { author: "C", rating: 5, text: "Great" },
+    ]);
+    expect(schema.aggregateRating.ratingValue).toBe(5);
+    expect(schema.aggregateRating.reviewCount).toBe(3);
   });
 });
 
@@ -148,5 +183,80 @@ describe("generateProductSchema", () => {
     });
     expect(schema["@type"]).toBe("Product");
     expect(schema.offers).toBeUndefined();
+  });
+});
+
+describe("generateHowToSchema", () => {
+  it("creates HowTo schema with numbered steps", () => {
+    const schema = generateHowToSchema({
+      name: "How to Build a Pool",
+      description: "Step-by-step pool building process",
+      steps: [
+        { name: "Consultation", text: "Meet to discuss vision" },
+        { name: "Design", text: "Create custom plan" },
+        { name: "Build", text: "Construct the pool" },
+      ],
+    });
+    expect(schema["@context"]).toBe("https://schema.org");
+    expect(schema["@type"]).toBe("HowTo");
+    expect(schema.name).toBe("How to Build a Pool");
+    expect(schema.step).toHaveLength(3);
+    expect(schema.step[0]["@type"]).toBe("HowToStep");
+    expect(schema.step[0].position).toBe(1);
+    expect(schema.step[0].name).toBe("Consultation");
+    expect(schema.step[2].position).toBe(3);
+  });
+});
+
+describe("generateContactPointSchema", () => {
+  it("creates ContactPoint schema with phone and email", () => {
+    const schema = generateContactPointSchema();
+    expect(schema["@context"]).toBe("https://schema.org");
+    expect(schema["@type"]).toBe("HomeAndConstructionBusiness");
+    expect(schema.contactPoint["@type"]).toBe("ContactPoint");
+    expect(schema.contactPoint.telephone).toBe("(651) 653-6807");
+    expect(schema.contactPoint.email).toBe("sales@paragonpoolandspa.com");
+    expect(schema.contactPoint.contactType).toBe("sales");
+    expect(schema.contactPoint.areaServed).toEqual({
+      "@type": "State",
+      name: "Minnesota",
+    });
+  });
+});
+
+describe("generateArticleSchema", () => {
+  it("creates Article schema with required fields", () => {
+    const schema = generateArticleSchema({
+      title: "How Much Does a Pool Cost?",
+      description: "A guide to pool costs",
+      author: "Mike Henry",
+      datePublished: "2026-01-15",
+      url: "https://www.paragonpoolandspa.com/blog/pool-cost",
+    });
+    expect(schema["@context"]).toBe("https://schema.org");
+    expect(schema["@type"]).toBe("Article");
+    expect(schema.headline).toBe("How Much Does a Pool Cost?");
+    expect(schema.author.name).toBe("Mike Henry");
+    expect(schema.publisher.name).toBe("Paragon Pool & Spa");
+    expect(schema.datePublished).toBe("2026-01-15");
+    expect(schema).not.toHaveProperty("dateModified");
+    expect(schema).not.toHaveProperty("image");
+  });
+
+  it("includes optional dateModified and image", () => {
+    const schema = generateArticleSchema({
+      title: "Test Article",
+      description: "Test",
+      author: "Author",
+      datePublished: "2026-01-01",
+      dateModified: "2026-02-01",
+      url: "https://example.com/test",
+      image: "https://example.com/img.jpg",
+    });
+    expect(schema.dateModified).toBe("2026-02-01");
+    expect(schema.image).toEqual({
+      "@type": "ImageObject",
+      url: "https://example.com/img.jpg",
+    });
   });
 });

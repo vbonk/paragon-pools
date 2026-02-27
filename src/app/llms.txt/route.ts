@@ -1,6 +1,7 @@
 import { COMPANY } from "@/lib/constants";
 import { packagesContent } from "@/content/pages/packages";
 import { servicesContent } from "@/content/pages/services";
+import { allPosts } from "@/content/blog";
 
 export function GET() {
   const packages = packagesContent.packages
@@ -19,6 +20,17 @@ export function GET() {
   const faqs = servicesContent.faqs
     .map((f) => `Q: ${f.question}\nA: ${f.answer}`)
     .join("\n\n");
+
+  const blogSection = allPosts.length > 0
+    ? `## Blog & Resources
+
+${allPosts
+  .map(
+    (post) =>
+      `### ${post.title}\n- URL: ${COMPANY.url}/blog/${post.slug}\n- Published: ${post.datePublished}\n- Summary: ${post.description}`
+  )
+  .join("\n\n")}`
+    : "";
 
   const content = `# ${COMPANY.name}
 
@@ -68,6 +80,8 @@ ${services}
 ## Frequently Asked Questions
 
 ${faqs}
+
+${blogSection}
 
 ## Brands & Partners
 

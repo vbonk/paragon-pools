@@ -67,6 +67,33 @@ export interface FAQItem {
   answer: string;
 }
 
+export interface GalleryImage {
+  src: string;
+  alt: string;
+  featured?: boolean;
+  category?: string;
+}
+
+export interface GalleryContent {
+  hero: {
+    title: string;
+    subtitle: string;
+  };
+  images: GalleryImage[];
+}
+
+export interface BlogPost {
+  slug: string;
+  title: string;
+  description: string;
+  author: string;
+  datePublished: string;
+  dateModified?: string;
+  image?: string;
+  tags?: string[];
+  sections: { heading: string; content: string }[];
+}
+
 export interface PageContent {
   hero?: {
     title: string;

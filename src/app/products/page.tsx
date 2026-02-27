@@ -8,6 +8,8 @@ import { Card, CardTitle, CardDescription } from "@/components/ui/card";
 import { GalleryGrid } from "@/components/sections/gallery-grid";
 import { CtaBanner } from "@/components/sections/cta-banner";
 import { COMPANY } from "@/lib/constants";
+import { generateProductSchema } from "@/lib/schema";
+import { JsonLd } from "@/components/seo/json-ld";
 import { productsContent } from "@/content/pages/products";
 
 export const metadata: Metadata = createMetadata({
@@ -33,6 +35,15 @@ export default function ProductsPage() {
   return (
     <>
       <BreadcrumbSchema items={[{ name: "Products", path: "/products" }]} />
+      {productsContent.categories.flatMap((cat) =>
+        cat.products.map((p) => (
+          <JsonLd key={p.name} data={generateProductSchema({
+            name: p.name,
+            description: p.description,
+            url: `${COMPANY.url}/products`,
+          })} />
+        ))
+      )}
       <PageHero
         title={productsContent.hero.title}
         subtitle={productsContent.hero.subtitle}

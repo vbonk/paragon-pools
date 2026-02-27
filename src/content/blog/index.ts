@@ -15,3 +15,7 @@ export const allPosts: BlogPost[] = [
 export function getPostBySlug(slug: string): BlogPost | undefined {
   return allPosts.find((post) => post.slug === slug);
 }
+
+export function getRelatedPosts(currentSlug: string, limit = 2): BlogPost[] {
+  return allPosts.filter((post) => post.slug !== currentSlug).slice(0, limit);
+}

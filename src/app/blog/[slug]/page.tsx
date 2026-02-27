@@ -8,7 +8,8 @@ import { JsonLd } from "@/components/seo/json-ld";
 import { generateArticleSchema } from "@/lib/schema";
 import { CtaBanner } from "@/components/sections/cta-banner";
 import { COMPANY } from "@/lib/constants";
-import { allPosts, getPostBySlug } from "@/content/blog";
+import Link from "next/link";
+import { allPosts, getPostBySlug, getRelatedPosts } from "@/content/blog";
 
 export function generateStaticParams() {
   return allPosts.map((post) => ({ slug: post.slug }));
@@ -101,6 +102,45 @@ export default async function BlogPostPage({
           </div>
         </article>
       </Section>
+
+      {/* Related Articles */}
+      {(() => {
+        const related = getRelatedPosts(post.slug);
+        if (related.length === 0) return null;
+        return (
+          <Section background="muted">
+            <div className="mx-auto max-w-3xl">
+              <h2 className="text-2xl font-bold text-secondary mb-6">
+                Related Articles
+              </h2>
+              <div className="grid gap-6 sm:grid-cols-2">
+                {related.map((relatedPost) => (
+                  <Link
+                    key={relatedPost.slug}
+                    href={`/blog/${relatedPost.slug}`}
+                    className="block rounded-xl border border-border bg-white p-6 transition-shadow hover:shadow-lg"
+                  >
+                    <h3 className="font-semibold text-secondary group-hover:text-primary-dark">
+                      {relatedPost.title}
+                    </h3>
+                    <p className="mt-2 text-sm text-muted-foreground line-clamp-2">
+                      {relatedPost.description}
+                    </p>
+                  </Link>
+                ))}
+              </div>
+              <div className="mt-6">
+                <Link
+                  href="/services"
+                  className="text-sm font-medium text-primary-dark hover:text-secondary transition-colors"
+                >
+                  Explore our pool services &rarr;
+                </Link>
+              </div>
+            </div>
+          </Section>
+        );
+      })()}
 
       <CtaBanner
         title="Ready to Start Your Pool Project?"

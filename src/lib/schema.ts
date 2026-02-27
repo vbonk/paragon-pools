@@ -262,3 +262,27 @@ export function generateArticleSchema(article: {
     }),
   };
 }
+
+export function generatePersonSchema(person: {
+  name: string;
+  jobTitle: string;
+  description: string;
+  url: string;
+  knowsAbout?: string[];
+}) {
+  return {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    name: person.name,
+    jobTitle: person.jobTitle,
+    description: person.description,
+    url: person.url,
+    worksFor: {
+      "@type": "HomeAndConstructionBusiness",
+      name: COMPANY.name,
+      url: COMPANY.url,
+    },
+    ...(person.knowsAbout && { knowsAbout: person.knowsAbout }),
+    sameAs: Object.values(COMPANY.social),
+  };
+}

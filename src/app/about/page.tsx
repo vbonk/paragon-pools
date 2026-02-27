@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Image from "next/image";
+import Link from "next/link";
 import { createMetadata } from "@/lib/metadata";
 import { PageHero } from "@/components/sections/hero";
 import { Section, SectionHeader } from "@/components/ui/section";
@@ -88,6 +89,7 @@ export default function AboutPage() {
               alt="Paragon Pool & Spa team at Latham dealer conference"
               width={600}
               height={400}
+              sizes="(max-width: 640px) 100vw, 600px"
               className="mx-auto rounded-xl"
             />
             <p className="mt-3 text-sm text-muted-foreground">
@@ -105,22 +107,24 @@ export default function AboutPage() {
         />
         <div className="grid gap-6 md:grid-cols-3">
           {aboutContent.team.map((member) => (
-            <Card key={member.name} className="text-center">
-              <div className="mx-auto mb-4 flex h-20 w-20 items-center justify-center rounded-full bg-primary/20 text-2xl font-bold text-secondary">
-                {member.name
-                  .split(" ")
-                  .map((w) => w[0])
-                  .join("")
-                  .slice(0, 2)}
-              </div>
-              <CardTitle className="text-center">{member.name}</CardTitle>
-              <p className="text-sm text-primary-dark mt-1">{member.role}</p>
-              {member.bio && (
-                <CardDescription className="mt-2">
-                  {member.bio}
-                </CardDescription>
-              )}
-            </Card>
+            <Link key={member.name} href="/about/mike-henry" className="block">
+              <Card className="text-center hover:shadow-lg transition-shadow">
+                <div className="mx-auto mb-4 flex h-20 w-20 items-center justify-center rounded-full bg-primary/20 text-2xl font-bold text-secondary">
+                  {member.name
+                    .split(" ")
+                    .map((w) => w[0])
+                    .join("")
+                    .slice(0, 2)}
+                </div>
+                <CardTitle className="text-center">{member.name}</CardTitle>
+                <p className="text-sm text-primary-dark mt-1">{member.role}</p>
+                {member.bio && (
+                  <CardDescription className="mt-2">
+                    {member.bio}
+                  </CardDescription>
+                )}
+              </Card>
+            </Link>
           ))}
         </div>
       </Section>

@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import { Hero } from "@/components/sections/hero";
 import { Section, SectionHeader } from "@/components/ui/section";
 import { ServicesGrid } from "@/components/sections/services-grid";
@@ -5,8 +6,16 @@ import { GalleryGrid } from "@/components/sections/gallery-grid";
 import { TestimonialsGrid } from "@/components/sections/testimonials-carousel";
 import { CtaBanner } from "@/components/sections/cta-banner";
 import { TrustBar } from "@/components/sections/trust-bar";
+import { createMetadata } from "@/lib/metadata";
 import { COMPANY } from "@/lib/constants";
 import { homeContent } from "@/content/pages/home";
+
+export const metadata: Metadata = createMetadata({
+  title: "Pool, Spa & Sauna Experts | Twin Cities MN",
+  description:
+    "Paragon Pool & Spa builds custom inground pools, hot tubs, and saunas across the Twin Cities. Family-owned since 1990, BBB A+ rated. Get a free quote today.",
+  path: "/",
+});
 
 const projectGallery = [
   { src: "/images/hero/pool-project-1.jpg", alt: "Custom inground pool project by Paragon Pool & Spa", featured: true },

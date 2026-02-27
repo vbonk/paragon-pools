@@ -132,6 +132,11 @@ export function Footer() {
             Serving the Twin Cities metro area for over {COMPANY.yearsInBusiness} years.
           </p>
         </div>
+        <div className="mt-4 flex justify-center gap-6 text-sm text-primary-light">
+          <Link href="/privacy" className="hover:text-white transition-colors">
+            Privacy Policy
+          </Link>
+        </div>
       </Container>
     </footer>
   );

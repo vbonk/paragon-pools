@@ -3,6 +3,7 @@ import { workSans } from "@/lib/fonts";
 import { COMPANY } from "@/lib/constants";
 import { generateLocalBusinessSchema, generateWebsiteSchema } from "@/lib/schema";
 import { JsonLd } from "@/components/seo/json-ld";
+import { GoogleAnalytics } from "@/components/analytics/google-analytics";
 import { Header } from "@/components/layout/header";
 import { Footer } from "@/components/layout/footer";
 import "./globals.css";
@@ -42,6 +43,7 @@ export const metadata: Metadata = {
     siteName: COMPANY.name,
     title: `${COMPANY.name} | Pool, Spa & Sauna Experts`,
     description: COMPANY.description,
+    images: [{ url: "/og-image.jpg", width: 1200, height: 630, alt: "Paragon Pool & Spa" }],
   },
   twitter: {
     card: "summary_large_image",
@@ -50,6 +52,7 @@ export const metadata: Metadata = {
     index: true,
     follow: true,
   },
+  manifest: "/site.webmanifest",
   other: {
     "geo.region": "US-MN",
     "geo.placename": "Willernie, Minnesota",
@@ -66,6 +69,13 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${workSans.variable} font-sans antialiased`}>
+        <a
+          href="#main-content"
+          className="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-50 focus:rounded-lg focus:bg-secondary focus:px-4 focus:py-2 focus:text-white"
+        >
+          Skip to main content
+        </a>
+        <GoogleAnalytics />
         <JsonLd data={generateLocalBusinessSchema()} />
         <JsonLd data={generateWebsiteSchema()} />
         <Header />

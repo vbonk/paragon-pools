@@ -77,6 +77,27 @@ NEXT_PUBLIC_SITE_URL=https://www.paragonpoolandspa.com
 - JSON-LD on every page (LocalBusiness, BreadcrumbList, Review)
 - Native Next.js sitemap.ts and robots.ts
 - `public/llms.txt` for AI crawler readability
+## Platform Standards
+
+This project follows the LocalStar Digital platform architecture.
+Standards are maintained in the ai-marketing repo.
+
+| Standard | Reference |
+|----------|-----------|
+| Architecture | ai-marketing/docs/architecture/platform-architecture.md |
+| Authentication | ai-marketing/standards/auth.md |
+| Analytics | ai-marketing/standards/analytics.md |
+| Database | ai-marketing/standards/database.md |
+| Billing | ai-marketing/standards/billing.md |
+| Security | ai-marketing/standards/security.md |
+
+## Attribution Integration Status
+
+- **Status:** NOT YET INTEGRATED
+- **Client Slug:** paragon-pools
+- **Action Required:** Add ss.js snippet to layout.tsx and add www.paragonpoolandspa.com to ATTRIBUTION_ALLOWED_ORIGINS on Vercel
+- **Runbook:** See ai-marketing/runbooks/client-onboarding.md Step 5
+
 ---
 
 ## SESSION CONTINUITY STATE (Auto-Updated)

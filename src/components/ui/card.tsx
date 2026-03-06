@@ -16,13 +16,6 @@ export function Card({
   );
 }
 
-export function CardHeader({
-  className,
-  ...props
-}: HTMLAttributes<HTMLDivElement>) {
-  return <div className={cn("mb-4", className)} {...props} />;
-}
-
 export function CardTitle({
   className,
   ...props

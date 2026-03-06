@@ -118,7 +118,7 @@ export default async function BlogPostPage({
                   <Link
                     key={relatedPost.slug}
                     href={`/blog/${relatedPost.slug}`}
-                    className="block rounded-xl border border-border bg-white p-6 transition-shadow hover:shadow-lg"
+                    className="group block rounded-xl border border-border bg-white p-6 transition-shadow hover:shadow-lg"
                   >
                     <h3 className="font-semibold text-secondary group-hover:text-primary-dark">
                       {relatedPost.title}

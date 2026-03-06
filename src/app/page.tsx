@@ -35,7 +35,7 @@ export default function HomePage() {
         backgroundImage="/images/hero/pool-project-1.jpg"
       />
 
-      <TrustBar variant="compact" />
+      <TrustBar />
 
       {/* Intro */}
       <Section background="white">

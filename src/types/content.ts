@@ -14,14 +14,6 @@ export interface TestimonialItem {
   service?: string;
 }
 
-export interface PackageItem {
-  name: string;
-  description: string;
-  features: string[];
-  popular?: boolean;
-  href?: string;
-}
-
 export interface RealPackageItem {
   name: string;
   size: string;
@@ -92,19 +84,4 @@ export interface BlogPost {
   image?: string;
   tags?: string[];
   sections: { heading: string; content: string }[];
-}
-
-export interface PageContent {
-  hero?: {
-    title: string;
-    subtitle?: string;
-    cta?: { label: string; href: string };
-    secondaryCta?: { label: string; href: string };
-  };
-  sections: {
-    id: string;
-    title: string;
-    subtitle?: string;
-    content?: string;
-  }[];
 }

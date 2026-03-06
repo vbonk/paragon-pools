@@ -3,7 +3,7 @@ import { Check } from "lucide-react";
 import { cn } from "@/lib/utils";
 import type { PricingTier } from "@/types/content";
 
-export function PricingCard({ tier }: { tier: PricingTier }) {
+function PricingCard({ tier }: { tier: PricingTier }) {
   return (
     <div
       className={cn(

@@ -2,7 +2,6 @@ import { describe, it, expect } from "vitest";
 import {
   generateLocalBusinessSchema,
   generateServiceSchema,
-  generateBreadcrumbSchema,
   generateReviewSchema,
   generateWebsiteSchema,
   generateFAQPageSchema,
@@ -10,6 +9,7 @@ import {
   generateHowToSchema,
   generateContactPointSchema,
   generateArticleSchema,
+  generatePersonSchema,
 } from "@/lib/schema";
 
 describe("generateLocalBusinessSchema", () => {
@@ -81,16 +81,31 @@ describe("generateServiceSchema", () => {
   });
 });
 
-describe("generateBreadcrumbSchema", () => {
-  it("creates breadcrumb list", () => {
-    const schema = generateBreadcrumbSchema([
-      { name: "Home", url: "https://www.paragonpoolandspa.com" },
-      { name: "Services", url: "https://www.paragonpoolandspa.com/services" },
-    ]);
-    expect(schema["@type"]).toBe("BreadcrumbList");
-    expect(schema.itemListElement).toHaveLength(2);
-    expect(schema.itemListElement[0].position).toBe(1);
-    expect(schema.itemListElement[1].position).toBe(2);
+describe("generatePersonSchema", () => {
+  it("creates Person schema with required fields", () => {
+    const schema = generatePersonSchema({
+      name: "Mike Henry",
+      jobTitle: "President & Founder",
+      description: "Pool industry expert",
+      url: "https://www.paragonpoolandspa.com/about/mike-henry",
+      knowsAbout: ["Pool construction", "Spa installation"],
+    });
+    expect(schema["@context"]).toBe("https://schema.org");
+    expect(schema["@type"]).toBe("Person");
+    expect(schema.name).toBe("Mike Henry");
+    expect(schema.jobTitle).toBe("President & Founder");
+    expect(schema.worksFor.name).toBe("Paragon Pool & Spa");
+    expect(schema.knowsAbout).toHaveLength(2);
+  });
+
+  it("does not include company social links as personal sameAs", () => {
+    const schema = generatePersonSchema({
+      name: "Mike Henry",
+      jobTitle: "President",
+      description: "Expert",
+      url: "https://www.paragonpoolandspa.com/about/mike-henry",
+    });
+    expect(schema).not.toHaveProperty("sameAs");
   });
 });
 

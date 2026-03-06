@@ -18,7 +18,7 @@ export default function Error({
           Something Went Wrong
         </h1>
         <p className="mt-4 text-lg text-muted-foreground">
-          {error.message || "An unexpected error occurred. Please try again."}
+          An unexpected error occurred. Please try again.
         </p>
         <div className="mt-8 flex flex-col gap-4 sm:flex-row sm:justify-center">
           <button

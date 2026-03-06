@@ -7,7 +7,6 @@ interface HeroProps {
   subtitle?: string;
   cta?: { label: string; href: string };
   secondaryCta?: { label: string; href: string };
-  backgroundClass?: string;
   backgroundImage?: string;
 }
 
@@ -16,11 +15,10 @@ export function Hero({
   subtitle,
   cta,
   secondaryCta,
-  backgroundClass = "bg-gradient-to-br from-secondary via-secondary-light to-secondary",
   backgroundImage,
 }: HeroProps) {
   return (
-    <section className={`relative ${backgroundImage ? "bg-secondary" : backgroundClass} text-white`}>
+    <section className={`relative ${backgroundImage ? "bg-secondary" : "bg-gradient-to-br from-secondary via-secondary-light to-secondary"} text-white`}>
       {backgroundImage && (
         <>
           <Image

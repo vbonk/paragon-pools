@@ -2,7 +2,7 @@ import { Quote } from "lucide-react";
 import { Card } from "@/components/ui/card";
 import type { TestimonialItem } from "@/types/content";
 
-export function TestimonialCard({
+function TestimonialCard({
   testimonial,
 }: {
   testimonial: TestimonialItem;

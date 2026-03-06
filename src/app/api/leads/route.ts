@@ -50,25 +50,6 @@ export async function POST(request: NextRequest) {
     }
     delete raw._website;
 
-    // Append extra fields to message
-    const extras: string[] = [];
-    if (raw.interest) {
-      extras.push(`Interest: ${raw.interest}`);
-    }
-    if (raw.timeline) {
-      extras.push(`Timeline: ${raw.timeline}`);
-    }
-    if (raw.budget) {
-      extras.push(`Budget: ${raw.budget}`);
-    }
-    if (raw.referralSource) {
-      extras.push(`Referral Source: ${raw.referralSource}`);
-    }
-
-    if (extras.length > 0) {
-      raw.message = [raw.message, "---", ...extras].filter(Boolean).join("\n");
-    }
-
     // Validate
     const parsed = leadSchema.safeParse(raw);
     if (!parsed.success) {
@@ -78,6 +59,25 @@ export async function POST(request: NextRequest) {
       );
     }
 
+    // Append extra fields to message (operating on validated data)
+    const extras: string[] = [];
+    if (parsed.data.interest) {
+      extras.push(`Interest: ${parsed.data.interest}`);
+    }
+    if (parsed.data.timeline) {
+      extras.push(`Timeline: ${parsed.data.timeline}`);
+    }
+    if (parsed.data.budget) {
+      extras.push(`Budget: ${parsed.data.budget}`);
+    }
+    if (parsed.data.referralSource) {
+      extras.push(`Referral Source: ${parsed.data.referralSource}`);
+    }
+
+    const message = extras.length > 0
+      ? [parsed.data.message, "---", ...extras].filter(Boolean).join("\n")
+      : parsed.data.message;
+
     // Fire-and-forget n8n webhook
     const webhookUrl = process.env.N8N_WEBHOOK_URL;
     if (webhookUrl) {
@@ -86,6 +86,7 @@ export async function POST(request: NextRequest) {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           ...parsed.data,
+          message,
           source: "paragon-pools-website",
           timestamp: new Date().toISOString(),
         }),

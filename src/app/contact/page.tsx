@@ -9,6 +9,7 @@ import { generateContactPointSchema } from "@/lib/schema";
 import { ContactForm } from "@/components/sections/contact-form";
 import { MapEmbed } from "@/components/sections/map-embed";
 import { contactContent } from "@/content/pages/contact";
+import { COMPANY } from "@/lib/constants";
 
 export const metadata: Metadata = createMetadata({
   title: "Contact Us",
@@ -53,19 +54,19 @@ export default function ContactPage() {
               <div className="rounded-xl border border-border bg-muted p-6">
                 <p className="font-semibold text-secondary">Phone</p>
                 <a
-                  href="tel:+16516536807"
+                  href={`tel:${COMPANY.phoneRaw}`}
                   className="text-lg font-bold text-accent-dark hover:underline"
                 >
-                  (651) 653-6807
+                  {COMPANY.phone}
                 </a>
               </div>
               <div className="rounded-xl border border-border bg-muted p-6">
                 <p className="font-semibold text-secondary">Email</p>
                 <a
-                  href="mailto:sales@paragonpoolandspa.com"
+                  href={`mailto:${COMPANY.email}`}
                   className="text-primary-dark hover:underline"
                 >
-                  sales@paragonpoolandspa.com
+                  {COMPANY.email}
                 </a>
               </div>
             </div>

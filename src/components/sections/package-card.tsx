@@ -20,7 +20,7 @@ function SpecList({ title, items }: { title: string; items: string[] }) {
   );
 }
 
-export function PackageCard({ pkg }: { pkg: RealPackageItem }) {
+function PackageCard({ pkg }: { pkg: RealPackageItem }) {
   const hasPrice = pkg.price !== null;
 
   return (

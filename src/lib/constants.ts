@@ -10,7 +10,7 @@ export const COMPANY = {
   email: "sales@paragonpoolandspa.com",
   url: "https://www.paragonpoolandspa.com",
   foundedYear: 1990,
-  yearsInBusiness: 35,
+  get yearsInBusiness() { return new Date().getFullYear() - 1990; },
   bbbRating: "A+",
 
   locations: [

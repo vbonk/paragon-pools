@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { Phone, Mail, MapPin, Facebook, Shield, Award, Star } from "lucide-react";
 import { COMPANY } from "@/lib/constants";
+import { Container } from "@/components/ui/container";
 
 const FOOTER_LINKS = [
   { href: "/", label: "Home" },
@@ -14,7 +15,6 @@ const FOOTER_LINKS = [
   { href: "/blog", label: "Blog" },
   { href: "/contact", label: "Contact" },
 ];
-import { Container } from "@/components/ui/container";
 
 export function Footer() {
   const currentYear = new Date().getFullYear();
@@ -35,7 +35,7 @@ export function Footer() {
             </div>
             <div className="flex items-center gap-2">
               <Star className="h-5 w-5 text-accent" />
-              <span>35+ Years in Business</span>
+              <span>{COMPANY.yearsInBusiness}+ Years in Business</span>
             </div>
           </div>
         </Container>

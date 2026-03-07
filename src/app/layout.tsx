@@ -3,6 +3,7 @@ import { workSans } from "@/lib/fonts";
 import { COMPANY } from "@/lib/constants";
 import { generateLocalBusinessSchema, generateWebsiteSchema } from "@/lib/schema";
 import { JsonLd } from "@/components/seo/json-ld";
+import Script from "next/script";
 import { GoogleAnalytics } from "@/components/analytics/google-analytics";
 import { Header } from "@/components/layout/header";
 import { Footer } from "@/components/layout/footer";
@@ -75,6 +76,7 @@ export default function RootLayout({
         >
           Skip to main content
         </a>
+        <Script src="/ss.js" data-client="paragon-pools" strategy="afterInteractive" />
         <GoogleAnalytics />
         <JsonLd data={generateLocalBusinessSchema()} />
         <JsonLd data={generateWebsiteSchema()} />

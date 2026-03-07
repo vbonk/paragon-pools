@@ -7,6 +7,13 @@ const nextConfig: NextConfig = {
   async headers() {
     return [
       {
+        source: "/llms.txt",
+        headers: [
+          { key: "Content-Type", value: "text/plain" },
+          { key: "Cache-Control", value: "public, max-age=86400" },
+        ],
+      },
+      {
         source: "/(.*)",
         headers: [
           { key: "X-Frame-Options", value: "SAMEORIGIN" },

@@ -98,6 +98,47 @@ Standards are maintained in the ai-marketing repo.
 - **Action Required:** Add ss.js snippet to layout.tsx and add www.paragonpoolandspa.com to ATTRIBUTION_ALLOWED_ORIGINS on Vercel
 - **Runbook:** See ai-marketing/runbooks/client-onboarding.md Step 5
 
+## Notion Launch Tracker
+
+This project has a Notion Launch Tracker board for milestone-based project tracking.
+
+| Resource | Value |
+|----------|-------|
+| Parent Page | [Paragon Pool & Spa](https://www.notion.so/Paragon-Pool-Spa-31c54f5fe2918146bfdadc141ebac346) |
+| Database ID | `31c54f5f-e291-811b-89d7-c6bff91f6af6` |
+| GitHub Issues | #1–#12 on vbonk/paragon-pools |
+
+### Database Properties
+
+| Property | Type | Purpose |
+|----------|------|---------|
+| Name | Title | Issue title |
+| Status | Select (Planning / In Progress / Done / Blocked) | Current state |
+| Milestone | Select (v1.0 Production Launch / v1.1 Post-Launch) | Release grouping |
+| Priority | Select (High / Medium) | Urgency |
+| Category | Select (Infrastructure / Brand Assets / Analytics / Content / DevOps) | Work type |
+| GitHub Issue | Number | Links to GitHub issue # |
+| Agent status | Rich Text | Agent reports current activity |
+| Agent blocked | Checkbox | Agent signals it needs human input |
+
+### How to Use
+
+Agents and sessions working on this repo should update the Notion board as work progresses:
+
+1. **Read token:** `python3 -c "import json; print(json.load(open('$HOME/.claude/.mcp.json'))['mcpServers']['notion']['env']['NOTION_TOKEN'])"`
+2. **Query items:** `curl -s "https://api.notion.com/v1/databases/31c54f5f-e291-811b-89d7-c6bff91f6af6/query" -H "Authorization: Bearer $TOKEN" -H "Content-Type: application/json" -H "Notion-Version: 2022-06-28" -d '{}'`
+3. **Update status:** PATCH `https://api.notion.com/v1/pages/{PAGE_ID}` with `{"properties": {"Status": {"select": {"name": "Done"}}}}`
+4. **Report activity:** Set "Agent status" text when starting work on an item
+5. **Signal blockers:** Check "Agent blocked" when human input is needed
+
+### Status Dashboard
+
+Query the database filtered by Status to generate progress summaries. Group by Milestone for release readiness reports.
+
+### Platform Standard
+
+See `ai-marketing/standards/notion.md` for the full schema, API reference, and client registry.
+
 ---
 
 ## SESSION CONTINUITY STATE (Auto-Updated)

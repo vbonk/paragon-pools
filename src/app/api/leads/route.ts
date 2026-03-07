@@ -3,15 +3,15 @@ import { z } from "zod";
 import { rateLimit } from "@/lib/rate-limit";
 
 const leadSchema = z.object({
-  name: z.string().min(1, "Name is required"),
-  email: z.string().email("Invalid email"),
-  phone: z.string().optional(),
-  interest: z.string().optional(),
-  timeline: z.string().optional(),
-  budget: z.string().optional(),
-  referralSource: z.string().optional(),
-  message: z.string().optional(),
-  sourcePage: z.string().optional(),
+  name: z.string().min(1, "Name is required").max(200),
+  email: z.string().email("Invalid email").max(254),
+  phone: z.string().max(20).optional(),
+  interest: z.string().max(200).optional(),
+  timeline: z.string().max(200).optional(),
+  budget: z.string().max(50).optional(),
+  referralSource: z.string().max(200).optional(),
+  message: z.string().max(2000).optional(),
+  sourcePage: z.string().max(500).optional(),
 });
 
 export async function POST(request: NextRequest) {

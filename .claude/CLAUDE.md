@@ -54,7 +54,17 @@ Contact form submits to `/api/leads` which:
 1. Rate-limits by IP
 2. Validates with Zod
 3. Checks honeypot field
-4. Fire-and-forget POST to `N8N_WEBHOOK_URL` env var
+4. Inserts into Railway PG `leads` table with `client_slug: 'paragon-pools'`
+
+### Lead Notification Routing
+
+Lead notifications are handled by a **universal router** n8n workflow (`gWqDfFrdkLafK2io`). It queries Railway PG for unnotified leads, looks up the Telegram `notification_chat_id` from `client_configs`, and routes each lead to the correct client's Telegram group.
+
+- **Paragon's `client_slug`:** `paragon-pools`
+- **Telegram group:** Not yet created — needs setup before going live
+- **Every lead INSERT must include `client_slug: 'paragon-pools'`** — this is how the router knows where to send
+- **Do NOT create a per-client lead notification workflow** — the universal router handles all clients
+- **`client_configs` is admin-only** — no agent may modify without explicit human approval. See `ai-marketing/docs/measurement-system.md`
 
 ## Environment Variables
 

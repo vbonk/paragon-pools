@@ -1,6 +1,8 @@
 import { NextRequest, NextResponse } from "next/server";
 import { z } from "zod";
+import { createHash } from "crypto";
 import { rateLimit } from "@/lib/rate-limit";
+import { getDb, schema } from "@/lib/db";
 
 const leadSchema = z.object({
   name: z.string().min(1, "Name is required").max(200),
@@ -13,6 +15,10 @@ const leadSchema = z.object({
   message: z.string().max(2000).optional(),
   sourcePage: z.string().max(500).optional(),
 });
+
+function hashIp(ip: string): string {
+  return createHash("sha256").update(ip).digest("hex").slice(0, 16);
+}
 
 export async function POST(request: NextRequest) {
   try {
@@ -59,39 +65,31 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    // Append extra fields to message (operating on validated data)
+    // Build message with extra fields appended
     const extras: string[] = [];
-    if (parsed.data.interest) {
-      extras.push(`Interest: ${parsed.data.interest}`);
-    }
-    if (parsed.data.timeline) {
-      extras.push(`Timeline: ${parsed.data.timeline}`);
-    }
-    if (parsed.data.budget) {
-      extras.push(`Budget: ${parsed.data.budget}`);
-    }
-    if (parsed.data.referralSource) {
+    if (parsed.data.interest) extras.push(`Interest: ${parsed.data.interest}`);
+    if (parsed.data.timeline) extras.push(`Timeline: ${parsed.data.timeline}`);
+    if (parsed.data.budget) extras.push(`Budget: ${parsed.data.budget}`);
+    if (parsed.data.referralSource)
       extras.push(`Referral Source: ${parsed.data.referralSource}`);
-    }
 
-    const message = extras.length > 0
-      ? [parsed.data.message, "---", ...extras].filter(Boolean).join("\n")
-      : parsed.data.message;
+    const message =
+      extras.length > 0
+        ? [parsed.data.message, "---", ...extras].filter(Boolean).join("\n")
+        : parsed.data.message || null;
 
-    // Fire-and-forget n8n webhook
-    const webhookUrl = process.env.N8N_WEBHOOK_URL;
-    if (webhookUrl) {
-      fetch(webhookUrl, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          ...parsed.data,
-          message,
-          source: "paragon-pools-website",
-          timestamp: new Date().toISOString(),
-        }),
-      }).catch((err) => console.error("n8n webhook error:", err));
-    }
+    // Insert into shared Railway PG leads table via Drizzle
+    const db = getDb();
+    await db.insert(schema.leads).values({
+      clientSlug: "paragon-pools",
+      name: parsed.data.name,
+      email: parsed.data.email,
+      message,
+      ipHash: hashIp(ip),
+      userAgent: request.headers.get("user-agent")?.slice(0, 500) ?? null,
+      referrer: request.headers.get("referer")?.slice(0, 500) ?? null,
+      pageUrl: parsed.data.sourcePage?.slice(0, 500) ?? null,
+    });
 
     return NextResponse.json(
       { success: true },
@@ -101,7 +99,10 @@ export async function POST(request: NextRequest) {
       }
     );
   } catch (error) {
-    console.error("Lead submission error:", error);
+    console.error(
+      "Lead submission error:",
+      error instanceof Error ? error.message : error
+    );
     return NextResponse.json(
       { success: false, error: "Failed to submit lead" },
       { status: 500 }

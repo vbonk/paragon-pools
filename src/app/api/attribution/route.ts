@@ -1,6 +1,6 @@
 // Attribution API endpoint. Standard: ai-marketing/standards/analytics.md
 import { NextRequest, NextResponse } from "next/server";
-import { getPool } from "@/lib/db";
+import { getDb, schema } from "@/lib/db";
 import { classifyReferrer } from "@/lib/referrer-classifier";
 import { hashIp } from "@/lib/hash";
 
@@ -48,31 +48,22 @@ export async function POST(request: NextRequest) {
     "unknown";
 
   try {
-    const pool = getPool();
-    await pool.query(`SET app.client_slug = $1`, [CLIENT_SLUG]);
-    await pool.query(
-      `INSERT INTO attribution_events
-        (client_slug, referrer, referrer_category, landing_page,
-         utm_source, utm_medium, utm_campaign,
-         session_duration_ms, scroll_depth_pct, pages_viewed,
-         conversion_type, user_agent, ip_hash)
-       VALUES ($1,$2,$3,$4,$5,$6,$7,$8,$9,$10,$11,$12,$13)`,
-      [
-        CLIENT_SLUG,
-        referrer,
-        category,
-        clamp(body.page),
-        utmSource,
-        clamp(body.utm_medium),
-        clamp(body.utm_campaign),
-        clampInt(body.duration),
-        clampInt(body.scroll, 0, 100),
-        clampInt(body.pages, 1, 10000) ?? 1,
-        clamp(body.conversion_type),
-        clamp(request.headers.get("user-agent")),
-        hashIp(ip),
-      ]
-    );
+    const db = getDb();
+    await db.insert(schema.attributionEvents).values({
+      clientSlug: CLIENT_SLUG,
+      referrer,
+      referrerCategory: category,
+      landingPage: clamp(body.page),
+      utmSource,
+      utmMedium: clamp(body.utm_medium),
+      utmCampaign: clamp(body.utm_campaign),
+      sessionDurationMs: clampInt(body.duration),
+      scrollDepthPct: clampInt(body.scroll, 0, 100),
+      pagesViewed: clampInt(body.pages, 1, 10000) ?? 1,
+      conversionType: clamp(body.conversion_type),
+      userAgent: clamp(request.headers.get("user-agent")),
+      ipHash: hashIp(ip),
+    });
   } catch (err) {
     console.error("Attribution insert error:", err);
   }

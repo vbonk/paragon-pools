@@ -101,12 +101,13 @@ Standards are maintained in the ai-marketing repo.
 | Billing | ai-marketing/standards/billing.md |
 | Security | ai-marketing/standards/security.md |
 
-## Attribution Integration Status
+## Database & Attribution Status
 
-- **Status:** NOT YET INTEGRATED
+- **Status:** LIVE (Railway PG)
 - **Client Slug:** paragon-pools
-- **Action Required:** Add ss.js snippet to layout.tsx and add www.paragonpoolandspa.com to ATTRIBUTION_ALLOWED_ORIGINS on Vercel
-- **Runbook:** See ai-marketing/runbooks/client-onboarding.md Step 5
+- **ORM:** Drizzle + pg (node-postgres), lazy singleton with sslmode strip
+- **Leads:** `/api/leads` → `db.insert(schema.leads)` → N8N universal router → Telegram
+- **Attribution:** `/api/attribution` → `db.insert(schema.attributionEvents)` → Railway PG
 
 ## Notion Launch Tracker
 

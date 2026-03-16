@@ -76,6 +76,7 @@ export const attributionEvents = pgTable(
     conversionType: varchar("conversion_type", { length: 100 }),
     conversionValue: numeric("conversion_value", { precision: 10, scale: 2 }),
     userAgent: varchar("user_agent", { length: 2000 }),
+    siteStage: varchar("site_stage", { length: 20 }).default("prod").notNull(),
     ipHash: char("ip_hash", { length: 16 }).notNull(),
   },
   (table) => ({

@@ -51,6 +51,7 @@ export async function POST(request: NextRequest) {
     const db = getDb();
     await db.insert(schema.attributionEvents).values({
       clientSlug: CLIENT_SLUG,
+      siteStage: clamp(body.site_stage, 20) ?? "prod",
       referrer,
       referrerCategory: category,
       landingPage: clamp(body.page),

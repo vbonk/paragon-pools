@@ -1,24 +1,28 @@
 /**
- * SignalScore Attribution Snippet v1.1
- * Per-client traffic intelligence for GEO attribution.
- * Standard: ai-marketing/standards/analytics.md
- * Deploy: <Script src="/ss.js" data-client="[slug]" strategy="afterInteractive" />
+ * SignalScore Attribution Snippet v1.0
+ * Lightweight traffic intelligence for GEO attribution.
+ * Deploy: Add <script src="https://[host]/ss.js" data-client="[slug]" data-stage="prod" async></script>
  */
 (function() {
   'use strict';
+
   var script = document.currentScript;
   var CLIENT = script && script.getAttribute('data-client');
-  var ENDPOINT = script && script.getAttribute('data-endpoint') ||
-    (script && script.src.replace(/\/ss\.js.*/, '/api/attribution'));
+  var STAGE = script && script.getAttribute('data-stage') || 'prod';
+  var ENDPOINT = script && script.getAttribute('data-endpoint') || (script && script.src.replace(/\/ss\.js.*/, '/api/attribution'));
+
   if (!CLIENT || !ENDPOINT) return;
 
   var data = {
-    client: CLIENT,
+    client_slug: CLIENT,
+    site_stage: STAGE,
     referrer: document.referrer || null,
-    page: location.pathname + location.search,
+    landing_page: location.pathname + location.search,
     utm_source: getParam('utm_source'),
     utm_medium: getParam('utm_medium'),
-    utm_campaign: getParam('utm_campaign')
+    utm_campaign: getParam('utm_campaign'),
+    user_agent: navigator.userAgent,
+    event_timestamp: new Date().toISOString()
   };
 
   var maxScroll = 0;
@@ -30,36 +34,39 @@
     if (pct > maxScroll) maxScroll = Math.min(pct, 100);
   }, { passive: true });
 
+  // Send on page unload
   window.addEventListener('pagehide', function() {
     if (sent) return;
-    send(false);
+    data.scroll_depth_pct = maxScroll;
+    data.session_duration_ms = Date.now() - startTime;
+    send(data);
+    sent = true;
   });
 
-  // Fallback for Safari/mobile where pagehide may not fire
+  // Fallback: send after 2s in case pagehide doesn't fire (Safari, mobile)
   setTimeout(function() {
-    if (!sent) send(false);
+    if (!sent) {
+      data.scroll_depth_pct = maxScroll;
+      data.session_duration_ms = Date.now() - startTime;
+      send(data);
+      sent = true;
+    }
   }, 2000);
 
+  // Track form submissions as conversions
   document.addEventListener('submit', function(e) {
-    if (e.target && e.target.tagName === 'FORM') {
-      send(true);
+    var form = e.target;
+    if (form && form.tagName === 'FORM') {
+      var convData = Object.assign({}, data, {
+        conversion_type: 'form',
+        scroll_depth_pct: maxScroll,
+        session_duration_ms: Date.now() - startTime
+      });
+      send(convData);
     }
   });
 
-  function send(isConversion) {
-    if (sent) return;
-    sent = true;
-    var payload = {
-      client: data.client,
-      referrer: data.referrer,
-      page: data.page,
-      utm_source: data.utm_source,
-      utm_medium: data.utm_medium,
-      utm_campaign: data.utm_campaign,
-      scroll: maxScroll,
-      duration: Date.now() - startTime
-    };
-    if (isConversion) payload.conversion_type = 'form';
+  function send(payload) {
     var body = JSON.stringify(payload);
     if (navigator.sendBeacon) {
       navigator.sendBeacon(ENDPOINT, new Blob([body], { type: 'application/json' }));

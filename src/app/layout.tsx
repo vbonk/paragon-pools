@@ -76,7 +76,7 @@ export default function RootLayout({
         >
           Skip to main content
         </a>
-        <Script src="/ss.js" data-client="paragon-pools" strategy="afterInteractive" />
+        <Script src="/ss.js" data-client="paragon-pools" data-stage="prod" strategy="afterInteractive" />
         <GoogleAnalytics />
         <JsonLd data={generateLocalBusinessSchema()} />
         <JsonLd data={generateWebsiteSchema()} />

@@ -5,31 +5,31 @@
     "path": "/home/claude-runner/projects/paragon-pools"
   },
   "session": {
-    "id": "auto-20260227_043633",
-    "savedAt": "2026-02-27T04:36:33Z",
+    "id": "auto-20260313_184328",
+    "savedAt": "2026-03-13T18:43:28Z",
     "trigger": "PreCompact"
   },
   "state": {
-    "phase": "GEO 80+ committed, PDF suite generated",
-    "summary": "Committed and pushed all GEO 80+ improvements (21 files, +886 lines). Generated 4-PDF GEO system documentation suite (42 pages, 73 KB): System Overview, Sales Deck, Methodology Guide, Technical Reference. Documented PDF regeneration in MEMORY.md. Vercel auto-deploys via GitHub integration.",
+    "phase": "Deep code review + codebase cleanup complete, DB migration live",
+    "summary": "Ran full project review (standard depth) then deep 4-agent code review identifying 37 findings. Executed all cleanup phases: 3 CRITICAL security fixes (XSS in error boundaries, JSON-LD, GA script), removed 3 unused dependencies (next-sitemap, schema-dts, @testing-library/react), deleted 6 dead files, removed dead types/exports/props, fixed 7 bugs (sitemap, group-hover, contact constants, API validation order, Person schema sameAs, dynamic yearsInBusiness). Net -460 lines. 38/38 tests, clean build. Separately, the project has been migrated to Drizzle ORM with Railway PG for leads and attribution.",
     "taskListId": "",
     "blockers": [],
-    "nextActions": ["Create author page for Mike Henry with Person schema", "Claim Google Business Profile for all 3 locations (business owner action)", "Launch review campaign targeting 50+ Google reviews (business owner action)", "Configure custom domain (paragonpoolandspa.com) on Vercel", "Configure N8N_WEBHOOK_URL on Vercel for CRM routing"]
+    "nextActions": ["Configure custom domain (paragonpoolandspa.com) on Vercel", "Set up Telegram notification group for Paragon leads", "Set NEXT_PUBLIC_GA_MEASUREMENT_ID on Vercel for analytics", "Claim Google Business Profile for all 3 locations (business owner action)", "Add apple-touch-icon.png and populate site.webmanifest icons array"]
   },
   "files": {
-    "modified": [".claude/HANDOFF.md", ".claude/SESSION_STATE.json", "docs/geo-system/", "scripts/generate_geo_system_pdfs.py"],
+    "modified": [".claude/HANDOFF.md", ".claude/SESSION_STATE.json"],
     "created": [],
     "mustExist": []
   },
   "context": {
-    "keyDecisions": ["Plain dict for ReportLab styles instead of stylesheet (avoids built-in name conflicts)", "White-label PDF design for reusability across clients", "4-PDF suite structure: Overview, Sales, Methodology, Technical Reference", "Vercel auto-deploys via GitHub integration (no CLI deploy needed)"],
-    "warnings": ["N8N_WEBHOOK_URL still not configured on Vercel", "Custom domain (paragonpoolandspa.com) not yet set on Vercel", "GEO score 80-83 is projected \u2014 actual score requires re-audit after deploy"],
+    "keyDecisions": ["yearsInBusiness: changed from static 35 to getter computing from foundedYear", "TrustBar: removed 'full' variant (unreachable code), simplified to no-prop component", "generateBreadcrumbSchema: removed from schema.ts (breadcrumb-schema.tsx builds inline)", "Person schema sameAs: removed company social links (semantically incorrect)", "API route: moved extras logic after Zod validation for security", "Drizzle ORM migration: leads now insert to Railway PG with client_slug"],
+    "warnings": ["Telegram notification group not yet created for Paragon leads", "Custom domain (paragonpoolandspa.com) still not configured on Vercel", "GA4 measurement ID not yet set on Vercel", "apple-touch-icon.png still missing"],
     "criticalInfo": []
   },
   "verification": {
     "filesVerified": false,
     "missingFiles": [],
-    "timestamp": "2026-02-27T04:36:33Z"
+    "timestamp": "2026-03-13T18:43:28Z"
   },
   "continuePrompt": ""
 }

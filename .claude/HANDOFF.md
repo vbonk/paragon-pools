@@ -1,6 +1,6 @@
-# Session Handoff: GEO 80+ Commit + PDF System Suite
+# Session Handoff: Deep Code Review + Codebase Cleanup
 
-**Date:** 2026-02-27
+**Date:** 2026-03-13
 **Project:** paragon-pools
 
 ---
@@ -9,82 +9,79 @@
 
 **Status:** COMPLETE
 **Completion:** 100%
-**Current Task:** GEO 80+ committed/pushed, PDF suite generated
+**Current Task:** Deep code review and cleanup -- all phases executed
 **Blocker:** None
-**Next Session Focus:** Mike Henry author page + Person schema
+**Next Session Focus:** Custom domain, Telegram notifications, GA4 setup
 
 ---
 
 ## 2. Quick Start (Next Session)
 
-**Context:** All GEO 80+ code changes committed and pushed (commit `5a95e42`, 21 files, +886 lines). Vercel auto-deploys via GitHub integration. Generated 4-PDF GEO system documentation suite (42 pages total) in `docs/geo-system/`. MEMORY.md updated with regeneration instructions.
+**Context:** A comprehensive 4-agent code review identified 37 findings (3 CRITICAL, 14 WARNING, 8 INFO, 12 CLEANUP). All phases were executed in one commit: security XSS fixes, dead code/file removal, unused dependency uninstall, bug fixes, and polish. The project has also been migrated from N8N webhook fire-and-forget to Drizzle ORM + Railway PG for leads and attribution (done in a separate session).
 
 **Immediate Actions:**
-1. Create `/about/mike-henry` author page with Person schema (quick E-E-A-T win)
-2. Expand FAQ content to 15-20 questions across service pages
-3. Run post-deploy GEO re-audit to verify projected 80-83 score
+1. Configure custom domain `paragonpoolandspa.com` on Vercel
+2. Create Telegram notification group for Paragon lead alerts
+3. Set `NEXT_PUBLIC_GA_MEASUREMENT_ID` on Vercel
 
-**Do NOT:** Assume GEO score is verified — 80-83 is projected, needs re-audit post-deploy.
+**Do NOT:** Modify `client_configs` table without human approval. Do NOT create per-client lead notification workflows -- the universal router handles all clients.
 
 ---
 
 ## 3. Current Progress
 
 ### Completed
-- [x] GEO 80+ implementation — all phases A-D (prior session)
-- [x] Commit and push — `5a95e42` on main, 21 files, +886/-74 lines
-- [x] GEO PDF suite — 4 PDFs (Overview, Sales Deck, Methodology Guide, Technical Reference)
-- [x] MEMORY.md documented with PDF regeneration instructions
-- [x] Corrected deployment understanding (Vercel auto-deploys, no CLI needed)
+- [x] Project review (standard depth) -- 22 routes, 38 tests, 0 vulns
+- [x] Deep code review -- 4 parallel agents, 37 findings identified
+- [x] CRITICAL: 3 XSS vulnerabilities patched (error.message, JSON-LD, GA script)
+- [x] Dead files deleted: site.ts, next-sitemap.config.js, download-images.sh, optimize-images.mjs
+- [x] Dead code removed: PackageItem, PageContent, generateBreadcrumbSchema, CardHeader, asChild, backgroundClass, TrustBar full variant
+- [x] Unused deps removed: next-sitemap, schema-dts, @testing-library/react
+- [x] Bug fixes: sitemap missing pages, group-hover, yearsInBusiness dynamic, API validation order, contact constants, Person sameAs, footer imports
+- [x] Added: "test" script, generatePersonSchema test
+- [x] Drizzle ORM migration (separate session) -- leads + attribution to Railway PG
 
-### In Progress
-- (nothing)
+### Pending (business owner actions)
+- [ ] Claim Google Business Profile for 3 locations
+- [ ] Launch review campaign (target 50+ Google reviews)
+- [ ] Create Telegram group for lead notifications
 
-### Blocked/Pending
-- [ ] Mike Henry author page + Person schema
-- [ ] Google Business Profile — 3 locations (business owner action)
-- [ ] Review campaign — target 50+ reviews (business owner action)
-- [ ] N8N_WEBHOOK_URL — needs n8n workflow URL
-- [ ] Custom domain config (paragonpoolandspa.com)
+### Pending (agent actions)
+- [ ] Configure custom domain on Vercel
+- [ ] Set GA4 measurement ID on Vercel
+- [ ] Add apple-touch-icon.png and webmanifest icons
 
 ---
 
 ## 4. Key Decisions & Findings
 
 **Decisions Made:**
-- Plain dict for ReportLab styles (avoids built-in name conflicts like 'Body' vs 'BodyText')
-- White-label PDF design for reusability across clients/projects
-- 4-PDF suite structure: each PDF targets different audience/goal
-- Vercel auto-deploys via GitHub integration — no CLI deploy commands needed
-
-**What Didn't Work:**
-- ReportLab stylesheet `styles['Body']` failed — built-in name conflict. Fixed by using plain dict.
+- yearsInBusiness: getter computing from foundedYear (auto-updates yearly)
+- TrustBar: removed unused "full" variant, simplified to propless component
+- generateBreadcrumbSchema: removed (breadcrumb-schema.tsx builds inline)
+- Person schema: removed company social from sameAs (semantically wrong)
+- API route: extras logic moved after Zod parse (security improvement)
 
 ---
 
 ## 5. Files & Environment
 
-**New Files:**
-- `scripts/generate_geo_system_pdfs.py` — PDF generator (~1530 lines, ReportLab)
-- `docs/geo-system/GEO-System-Overview.pdf` — 6 pages, 12 KB
-- `docs/geo-system/GEO-Sales-Deck.pdf` — 7 pages, 12 KB
-- `docs/geo-system/GEO-Methodology-Guide.pdf` — 13 pages, 22 KB
-- `docs/geo-system/GEO-Technical-Reference.pdf` — 16 pages, 28 KB
+**Cleanup commit:** `776ccf1` -- 29 files changed, +105 -565 lines
+**DB migration commits:** `048c49c`, `c94878d`, `78a5d87` (Drizzle ORM)
 
 **Git State:**
 - Branch: main
-- Last commit: `5a95e42` (GEO 80+ improvements)
-- Uncommitted: 2 untracked items (docs/geo-system/, scripts/generate_geo_system_pdfs.py)
+- Uncommitted: none (clean)
 
 ---
 
 ## 6. Resume Instructions
 
 1. Read this handoff
-2. Optionally commit the PDF suite files
-3. Create Mike Henry author page at `/about/mike-henry`
-4. Regenerate PDFs: `~/.claude/skills/geo/venv/bin/python3 scripts/generate_geo_system_pdfs.py docs/geo-system`
+2. Check `.claude/CLAUDE.md` for updated CRM/DB architecture
+3. Custom domain and GA4 are the top infrastructure priorities
+4. Telegram group creation requires human action
 
 ---
 
-**Handoff created:** 2026-02-27T04:20:00Z
+**Handoff created:** 2026-03-13T22:25:00Z
